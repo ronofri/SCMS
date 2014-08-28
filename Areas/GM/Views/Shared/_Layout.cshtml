@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" type="image/ico" href="~/favicon.ico" />
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/bootstrapcss")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrapjs")
+
+    @Styles.Render("~/Content/less")
+    @RenderSection("Scripts", required: false)
+
+    @Scripts.Render("~/bundles/ganttjs")
+    @Styles.Render("~/Content/ganttcss")
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="/POC"><img src="~/content/images/logo_elecmetal.png" alt="Elecmetal" /></a>
+        </div>
+    </div>
+
+            @* Size for the upper part ofthe layout *@
+            <div class="span3">
+            </div>
+            <div class="sidebar-nav">
+                    @Html.ActionLink("Inbox", "Index", "Inbox", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Create New PO.", "CreatePOC", "POC", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Search Customer PO's", "SearchPOC", "POC", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Test SCHEDULE", "DisplaySchedule", "POC", null, new { @class = "nav-header" })
+            </div>
+
+            @RenderSection("featured", required: false)
+            <div class="content">
+                @RenderBody()
+            </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<SCMS.Models.POC>
+
+@{
+    Layout = "~/Areas/GM/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header">
+    <h1 class="page-title">Inbox (GM)</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="block">
+            <a class="block-heading">Recent Incompleted Customer PO's</a>
+            @Html.DisplayFor(model => model, "ListPOC")
+        </div>
+    </div>
+</div>
