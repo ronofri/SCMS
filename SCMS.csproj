@@ -167,7 +167,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\GM\Controllers\InboxController.cs" />
+    <Compile Include="Areas\GM\Controllers\POCController.cs" />
     <Compile Include="Areas\GM\GMAreaRegistration.cs" />
+    <Compile Include="Areas\GM\ViewModels\CreateEditPOCViewModel.cs" />
     <Compile Include="DAL\DataBaseContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -245,7 +247,9 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\basicTableFilters.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -260,7 +264,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\GM\Models\" />
-    <Folder Include="Areas\GM\ViewModels\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +274,7 @@
     <Content Include="Areas\GM\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\GM\Views\Shared\_ViewStart.cshtml" />
     <Content Include="Areas\GM\Views\Inbox\Index.cshtml" />
+    <Content Include="Areas\GM\Views\POC\CreatePOC.cshtml" />
     <None Include="Content\bootstrap-theme.css.map" />
     <None Include="Content\bootstrap.css.map" />
     <None Include="Content\elements.less" />
@@ -278,6 +282,7 @@
     <None Include="Content\theme.less" />
     <Content Include="Views\Shared\DisplayTemplates\AlertItem.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ListPOC.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CreateEditPOC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">

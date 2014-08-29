@@ -1,0 +1,10 @@
+﻿@model SCMS.Areas.GM.ViewModels.CreateEditPOCViewModel
+
+@{
+    ViewBag.Title = "CreatePOC";
+    Layout = "~/Areas/GM/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreatePOC</h2>
+
+@Html.EditorFor(model => model, "CreateEditPOC")

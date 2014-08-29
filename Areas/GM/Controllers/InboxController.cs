@@ -12,6 +12,8 @@ using SCMS.DAL;
 using System.Web.Script.Serialization;
 using SCMS.RSolverTools;
 
+using SCMS.Areas.GM.ViewModels;
+
 namespace SCMS.Areas.GM.Controllers
 {
     public class InboxController : Controller

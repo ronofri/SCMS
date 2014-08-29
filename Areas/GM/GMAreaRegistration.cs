@@ -16,9 +16,8 @@ namespace SCMS.Areas.GM
         {
             context.MapRoute(
                 "GM_default",
-                "{controller}/{action}/{id}",
-                new { controller = "Inbox", action = "Index", id = UrlParameter.Optional },
-                new { controller = "Inbox" }
+                "GM/{controller}/{action}/{id}",
+                new { controller = "Inbox", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -28,18 +28,20 @@
             <div class="span3">
             </div>
             <div class="sidebar-nav">
-                    @Html.ActionLink("Inbox", "Index", "Inbox", null, new { @class = "nav-header" })
-                    @Html.ActionLink("Create New PO.", "CreatePOC", "POC", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Inbox", "Index", new { Area = "GM"}, new { @class = "nav-header" })
+                    @Html.ActionLink("Create New PO", "CreatePOC", new { Area = "GM"}, new { @class = "nav-header" })
                     @Html.ActionLink("Search Customer PO's", "SearchPOC", "POC", null, new { @class = "nav-header" })
                     @Html.ActionLink("Test SCHEDULE", "DisplaySchedule", "POC", null, new { @class = "nav-header" })
             </div>
 
             @RenderSection("featured", required: false)
             <div class="content">
-                @RenderBody()
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        @RenderBody()
+                    </div>
+                </div>
             </div>
 
-
 </body>
-
 </html>
