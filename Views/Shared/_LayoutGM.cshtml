@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="shortcut icon" type="image/ico" href="~/favicon.ico" />
     <title>@ViewBag.Title</title>
-
     @Styles.Render("~/Content/bootstrapcss")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrapjs")
@@ -28,10 +27,10 @@
             <div class="span3">
             </div>
             <div class="sidebar-nav">
-                    @Html.ActionLink("Inbox", "Index", new { Area = "GM"}, new { @class = "nav-header" })
-                    @Html.ActionLink("Create New PO", "CreatePOC", new { Area = "GM"}, new { @class = "nav-header" })
-                    @Html.ActionLink("Search Customer PO's", "SearchPOC", "POC", null, new { @class = "nav-header" })
-                    @Html.ActionLink("Test SCHEDULE", "DisplaySchedule", "POC", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Inbox", "Inbox", "GM_Inbox", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Create New PO", "CreatePOC", "GM_POC", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Search Customer PO's", "SearchPOC", "GM_Search", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Test SCHEDULE", "DisplaySchedule", "GM_Schedule", null, new { @class = "nav-header" })
             </div>
 
             @RenderSection("featured", required: false)
@@ -42,6 +41,7 @@
                     </div>
                 </div>
             </div>
+
 
 </body>
 </html>

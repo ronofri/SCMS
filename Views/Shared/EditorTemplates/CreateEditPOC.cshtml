@@ -1,12 +1,10 @@
-﻿@model SCMS.Areas.GM.ViewModels.CreateEditPOCViewModel
+﻿@model SCMS.ViewModels.GM_POC.CreateEditPOCViewModel
 
 @{
     ViewBag.Title = "CreatePOC";
 }
 
-<div class="container-fluid">
-    <div class="row-fluid">
-    <div class="block span8">
+
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 
@@ -100,9 +98,6 @@
    
     </fieldset>
 }
- </div>
-</div>
-   </div>
 
 
 

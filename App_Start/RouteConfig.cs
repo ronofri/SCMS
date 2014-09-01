@@ -12,12 +12,11 @@ namespace SCMS
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            AreaRegistration.RegisterAllAreas();
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new {controller = "Inbox", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "Areas.Controllers" }
+                defaults: new {controller = "GM_Inbox", action = "Inbox", id = UrlParameter.Optional }
             );
         }
     }

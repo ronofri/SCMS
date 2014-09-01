@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 using SCMS.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace SCMS.Areas.GM.ViewModels
+namespace SCMS.ViewModels.GM_POC
 {
     public class CreateEditPOCViewModel
     {
