@@ -198,7 +198,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RSolverTools\AlertItem.cs" />
     <Compile Include="RSolverTools\GanttSource.cs" />
-    <Compile Include="RSolverTools\TableHelper.cs" />
+    <Compile Include="RSolverTools\TablesHelper.cs" />
     <Compile Include="ViewModels\GM_Inbox\ListPOCViewModel.cs" />
     <Compile Include="ViewModels\GM_POC\CreateEditPOCViewModel.cs" />
   </ItemGroup>
