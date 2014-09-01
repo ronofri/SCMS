@@ -1,8 +1,11 @@
-﻿@model IEnumerable<SCMS.Models.POC>
+﻿@model SCMS.ViewModels.GM_Inbox.ListPOCViewModel
 
 @{
     ViewBag.Title = "Inbox";
 }
 
 <h2>Inbox</h2>
+
+@Html.DisplayFor(model => model, "ListPOC")
+
 
