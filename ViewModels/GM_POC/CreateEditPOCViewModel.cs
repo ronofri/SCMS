@@ -5,11 +5,18 @@ using System.Web;
 using SCMS.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using SCMS.RSolverTools;
 
 namespace SCMS.ViewModels.GM_POC
 {
     public class CreateEditPOCViewModel
     {
+        public CreateEditPOCViewModel() 
+        {
+            Alerts = new List<AlertItem>();
+        }
+        public List<AlertItem> Alerts { get; set; }
+
         public POC POC { get; set; }
 
         public List<Incoterm> Incoterms { get; set; }
@@ -32,8 +39,9 @@ namespace SCMS.ViewModels.GM_POC
             get { return new SelectList(Products, "ProductID", "Name"); }
         }
 
-        public string DestinationError { get; set; }
 
-        public string PortError { get; set; }
+        public string CustomerProperty { get; set; }
+
+        public string PortProperty { get; set; }
     }
 }

@@ -20,33 +20,25 @@
             <div class="span4">
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.POC.Customer.CustomerProperty)
+                    @Html.LabelFor(model => model.CustomerProperty)
                 </div>
                 <div class="form-group">
-                    @Html.TextBoxFor(model => model.POC.Customer.CustomerProperty, new { autocomplete = "off", @class = "typeaheadCustomer" })
+                    @Html.TextBoxFor(model => model.CustomerProperty, new { autocomplete = "off", @class = "typeaheadCustomer" })
                     <label id="error_destination" class="hidden" style="color:red"></label>
-                    @if (Model.DestinationError != "")
-                    {
-                        <label id="labelDestinationError" style="color:red"> @Model.DestinationError </label>
-                    }
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.POC.DestinationPort)
+                    @Html.LabelFor(model => model.PortProperty)
                 </div>
                 <div class="form-group">
-                    @Html.TextBoxFor(model => model.POC.DestinationPort, new { autocomplete = "off", @class = "typeaheadPort" })
+                    @Html.TextBoxFor(model => model.PortProperty, new { autocomplete = "off", @class = "typeaheadPort" })
                     <label id="error_port" class="hidden" style="color:red"></label>
-                    @if (Model.PortError != "")
-                    {
-                        <label id="labelPortError" style="color:red"> @Model.PortError </label>
-                    }
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.SelectedIncotermId)
                 </div>
                 <div class="form-group">
                     @Html.DropDownListFor(model => model.SelectedIncotermId, Model.IncotermItems, "Select Incoterm")
-                    @Html.ValidationMessageFor(model => model.SelectedIncotermId)<br />
+                    <br />
                     <label id="error_incoterm" class="hidden" style="color:red"></label>
                 </div>
 
@@ -55,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     @Html.DropDownListFor(model => model.SelectedProductId, Model.ProductItems, "Select Product Type")
-                    @Html.ValidationMessageFor(model => model.SelectedProductId)<br />
+                    <br />
                     <label id="error_ball" class="hidden" style="color:red"></label>
                 </div>
 
@@ -64,7 +56,6 @@
                 </div>
                 <div class="form-group">
                     @Html.TextBoxFor(model => model.POC.AmountTotal, new { autocomplete = "off" })
-                    @Html.ValidationMessageFor(model => model.POC.AmountTotal)
                     <label id="error_tons" class="hidden" style="color:red"></label>
                 </div>
 
@@ -73,7 +64,6 @@
                 </div>
                 <div class="form-group">
                     @Html.TextBoxFor(model => model.POC.PricePerTon, new { autocomplete = "off" })
-                    @Html.ValidationMessageFor(model => model.POC.PricePerTon)
                     <label id="error_price" class="hidden" style="color:red"></label>
                 </div>
 
@@ -91,7 +81,7 @@
         </div>
         <div class="panel-footer">
             <div class="row" style="text-align:right">
-                <input type="submit" name="submitButton" value="Save" class="btn btn-primary btn-lg" />
+                <input type="submit" name="submitButton" value="Save" class="btn btn-primary btn-lg" id="saveButton"/>
                 <input type="submit" name="submitButton" value="Save and Send" class="btn btn-primary btn-lg" id="sendButton"/>
             </div>
         </div>

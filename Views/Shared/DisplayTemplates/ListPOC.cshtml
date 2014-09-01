@@ -4,6 +4,8 @@
 {
     if (pair.Value.Count() > 0)
     {
+    <div class="block">
+    <a class="block-heading">Recent Incompleted Customer PO's</a>
      <table class="table">
                 <tr>
                     @if (Model.tablesHelper.Flags["PO Number"])
@@ -149,5 +151,6 @@
                 }
 
             </table>
+    </div>
     }
 }
