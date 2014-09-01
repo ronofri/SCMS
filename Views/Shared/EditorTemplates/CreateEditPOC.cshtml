@@ -4,7 +4,7 @@
     ViewBag.Title = "CreatePOC";
 }
 
-
+<div class="block span8">
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 
@@ -23,7 +23,7 @@
                     @Html.LabelFor(model => model.POC.Customer.CustomerProperty)
                 </div>
                 <div class="form-group">
-                    @Html.TextBoxFor(model => model.POC.Customer.CustomerProperty, new { autocomplete = "off" })
+                    @Html.TextBoxFor(model => model.POC.Customer.CustomerProperty, new { autocomplete = "off", @class = "typeaheadCustomer" })
                     <label id="error_destination" class="hidden" style="color:red"></label>
                     @if (Model.DestinationError != "")
                     {
@@ -34,7 +34,7 @@
                     @Html.LabelFor(model => model.POC.DestinationPort)
                 </div>
                 <div class="form-group">
-                    @Html.TextBoxFor(model => model.POC.DestinationPort, new { autocomplete = "off" })
+                    @Html.TextBoxFor(model => model.POC.DestinationPort, new { autocomplete = "off", @class = "typeaheadPort" })
                     <label id="error_port" class="hidden" style="color:red"></label>
                     @if (Model.PortError != "")
                     {
@@ -99,5 +99,5 @@
     </fieldset>
 }
 
-
+</div>
 

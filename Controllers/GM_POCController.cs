@@ -35,6 +35,58 @@ namespace SCMS.Controllers
             return View(VM);
         }
 
+        public JsonResult CustomerSearch(string query)
+        {
+            // Get Tags from database
+            List<Customer> customers = db.Customer.ToList<Customer>();
+            List<Customer> finalCustomers = new List<Customer>();
+
+            string queryLower = query.ToLower();
+
+            foreach (Customer c in customers)
+            {
+                bool name = (c.Name).ToLower().Contains(queryLower);
+                bool address = (c.Address).ToLower().Contains(queryLower);
+
+                if (name || address)
+                {
+                    finalCustomers.Add(c);
+                }
+            }
+
+            return new JsonResult
+            {
+                Data = finalCustomers.ToArray(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult PortSearch(string query)
+        {
+            // Get Tags from database
+            List<DestinationPort> ports = db.DestinationPort.ToList<DestinationPort>();
+            List<DestinationPort> finalPorts = new List<DestinationPort>();
+
+            string queryLower = query.ToLower();
+
+            foreach (DestinationPort d in ports)
+            {
+                bool name = (d.Name).ToLower().Contains(queryLower);
+                bool address = (d.Address).ToLower().Contains(queryLower);
+
+                if (name || address)
+                {
+                    finalPorts.Add(d);
+                }
+            }
+
+            return new JsonResult
+            {
+                Data = finalPorts.ToArray(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
 
         protected override void Dispose(bool disposing)
         {

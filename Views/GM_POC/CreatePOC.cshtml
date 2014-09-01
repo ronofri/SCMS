@@ -5,10 +5,60 @@
     Layout = "~/Views/Shared/_LayoutGM.cshtml";
 }
 
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="block span8">
-            @Html.EditorFor(model => model, "CreateEditPOC")
-        </div>
-    </div>
-</div>
+    @Html.EditorFor(model => model, "CreateEditPOC")
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.typeaheadCustomer').typeahead(
+        {
+            source: function (query, process) {
+                var customers = [];
+                map = {};
+
+                // This is going to make an HTTP post request to the controller
+                return $.post('/GM_POC/CustomerSearch', { query: query }, function (data) {
+                    // Loop through and push to the array
+                    //alert($('#CustomerProperty').val());
+
+                    $.each(data, function (i, customer) {
+
+                        var property = customer.CustomerProperty;
+                        map[property] = customer;
+                        customers.push(property);
+                    });
+
+
+                    // Process the details
+                    process(customers);
+                });
+            }
+        });
+        $('.typeaheadPort').typeahead(
+        {
+            source: function (query, process) {
+                var ports = [];
+                map = {};
+
+                // This is going to make an HTTP post request to the controller
+                return $.post('/GM_POC/PortSearch', { query: query }, function (data) {
+                    // Loop through and push to the array
+                    //alert(data);
+
+                    $.each(data, function (i, port) {
+
+                        var property = port.PortProperty;
+                        map[property] = port;
+                        ports.push(property);
+                    });
+
+
+                    // Process the details
+                    process(ports);
+                });
+            }
+        });
+    });
+
+</script>
