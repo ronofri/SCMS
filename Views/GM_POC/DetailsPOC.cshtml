@@ -32,19 +32,22 @@
     }
     else
     {
-        @Html.DisplayFor(model => Model.alert)
-        <button class="btn btn-primary btn-lg center-block">Add new Shipment</button>
+        <div>
+            @Html.DisplayFor(model => Model.alert)
+            <button id="addNew" class="btn btn-primary btn-lg center-block">Add new Shipment</button>
+        </div>
     }
 </div>
 <script type="text/javascript">
+    
     $(document).ready(function () {
-        var schedule = @Model.Schedule.ScheduleID
-        $.ajax(
+        function ganttLoader() {
+            $.ajax(
             {
                 url: '/GM_POC/ShipmentTest',
                 type: 'GET',
                 dataType: 'json',
-                data: {scheduleID: schedule },
+                data: { scheduleID: schedule },
                 success: function (result) {
                     //alert(JSON.stringify(result));
                     $(".gantt").gantt({
@@ -60,5 +63,14 @@
                 error: function () { } //should change div element html and ask the user to refresh
 
             });
+        };
+        var schedule = @Model.Schedule.ScheduleID
+        ganttLoader();
+        alert("");
+        $("#addNew").on("click", function () {
+            $("#Schedule div").detach();
+            $("#Schedule").html("<div class='gantt'></div>");
+            ganttLoader();
+        });
     });
 </script>

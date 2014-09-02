@@ -361,6 +361,7 @@ namespace SCMS.Controllers
         {
             Schedule schedule = db.Schedule.Find(scheduleID);
             List<Shipment> shipments = schedule.Shipments.ToList<Shipment>();
+            //shipments = db.Shipment.ToList<Shipment>();
             List<GanttSource> source = new List<GanttSource>();
 
             foreach (Shipment s in shipments)
