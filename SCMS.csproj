@@ -285,6 +285,7 @@
     <Content Include="Views\Shared\EditorTemplates\CreateEditPOC.cshtml" />
     <Content Include="Views\GM_Inbox\Inbox.cshtml" />
     <Content Include="Views\GM_POC\CreatePOC.cshtml" />
+    <Content Include="Views\GM_POC\EditPOC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">

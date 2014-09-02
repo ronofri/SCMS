@@ -140,7 +140,7 @@
                                     <img src="~/Content/images/iconCog.png" width="15" height="15">
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
-                                    <li role="presentation">@Html.ActionLink("Edit", "Edit", new { id = item.POCID })</li>
+                                    <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = item.POCID , controller = "GM_POC"})</li>
                                     <li role="presentation">@Html.ActionLink("Details", "Details", new { id = item.POCID })</li>
                                     <li role="presentation" class="divider"></li>
                                     <li role="presentation">@Html.ActionLink("Delete", "Delete", new { id = item.POCID })</li>

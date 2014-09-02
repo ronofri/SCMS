@@ -9,6 +9,10 @@ using SCMS.Models;
 using SCMS.DAL;
 using SCMS.RSolverTools;
 
+using System.Data;
+using System.Data.Entity;
+
+
 namespace SCMS.Controllers
 {
     public class GM_POCController : Controller
@@ -85,6 +89,109 @@ namespace SCMS.Controllers
             }
 
             return RedirectToAction("Inbox", new {controller = "GM_Inbox" });
+        }
+
+        public ActionResult EditPOC(int id = 0)
+        {
+            var purchaseordercustomerFull = db.POC.Include(x => x.Product).Include(x => x.Customer).Include(x => x.DestinationPort);
+            var result = purchaseordercustomerFull.Where(p => p.POCID == id);
+            List<POC> purchaseordercustomerList = result.ToList<POC>();
+
+            if (purchaseordercustomerList.Count == 0)
+            {
+                return HttpNotFound();
+            }
+
+            POC POC = purchaseordercustomerList[0];
+            CreateEditPOCViewModel VM = new CreateEditPOCViewModel();
+
+            VM.Products = db.Product.ToList<Product>();
+            VM.Incoterms = db.Incoterm.ToList<Incoterm>();
+
+            VM.POC = POC;
+
+            if(POC.CustomerIncoterm != null)
+                VM.SelectedIncotermId = POC.CustomerIncoterm.IncotermID;
+            if(POC.Product != null)
+                VM.SelectedProductId = POC.Product.ProductID;
+
+            if (POC.Customer != null) 
+            {
+                VM.CustomerProperty = POC.Customer.CustomerProperty;
+            }
+
+            if (POC.DestinationPort != null)
+            {
+                VM.PortProperty = POC.DestinationPort.PortProperty;
+            }
+
+            return View(VM);
+        }
+
+        [HttpPost]
+        public ActionResult EditPOC(CreateEditPOCViewModel VM, string submitButton, int id)
+        {
+            POC POC = db.POC.Find(id);
+
+            if (VM.Alerts == null)
+                VM.Alerts = new List<AlertItem>();
+
+            else if (VM.Alerts.Count != 0)
+            {
+                VM.Alerts.Clear();
+            }
+
+            int status = 0;
+
+            switch (submitButton)
+            {
+                case "Save":
+                    status = 1;
+                    validateCreatePost(VM, false);
+                    break;
+                case "Save and Send":
+                    status = 2;
+                    validateCreatePost(VM, true);
+                    break;
+            }
+
+            if (VM.Alerts.Count > 0)
+            {
+                reloadEditPOC(VM);
+                return View(VM);
+            }
+
+            POC.AmountTotal = VM.POC.AmountTotal;
+            POC.Comments = VM.POC.Comments;
+            POC.PricePerTon = VM.POC.PricePerTon;
+
+            POC.Customer = VM.POC.Customer;
+            POC.CustomerIncoterm = VM.POC.CustomerIncoterm;
+
+            POC.DestinationPort = VM.POC.DestinationPort;
+
+            POC.Product = VM.POC.Product;
+
+            POC.Status = status;
+
+            db.Entry(POC).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                VM.Alerts.Add(new AlertItem("Unexpected database error. Changes could not be saved."));
+            }
+
+            return RedirectToAction("Inbox", new { controller = "GM_Inbox" });
+        }
+
+        public void reloadEditPOC(CreateEditPOCViewModel VM) 
+        {
+            VM.Products = db.Product.ToList<Product>();
+            VM.Incoterms = db.Incoterm.ToList<Incoterm>();
         }
 
         public JsonResult CustomerSearch(string query)
@@ -192,41 +299,50 @@ namespace SCMS.Controllers
             {
                 VM.POC.DestinationPort = finalDestination;
             }
-            else 
+            else if (postType)
             {
                 VM.Alerts.Add(new AlertItem("Selected Port is not valid."));
             }
 
-            if (postType)
+
+            if (VM.SelectedIncotermId > 0)
             {
+                VM.POC.CustomerIncoterm = db.Incoterm.Find(VM.SelectedIncotermId);
+            }
+            else if(postType)
+            {
+                VM.Alerts.Add(new AlertItem("Selected Incoterm is not valid."));
+            }
+            if (VM.SelectedProductId > 0)
+            {
+                VM.POC.Product = db.Product.Find(VM.SelectedProductId);
+            }
+            else if (postType)
+            {
+                VM.Alerts.Add(new AlertItem("Selected Product Type is not valid."));
+            }
 
-                if (VM.SelectedIncotermId > 0)
-                {
-                    VM.POC.CustomerIncoterm = db.Incoterm.Find(VM.SelectedIncotermId);
-                }
-                else
-                {
-                    VM.Alerts.Add(new AlertItem("Selected Incoterm is not valid."));
-                }
-                if (VM.SelectedProductId > 0)
-                {
-                    VM.POC.Product = db.Product.Find(VM.SelectedProductId);
-                }
-                else
-                {
-                    VM.Alerts.Add(new AlertItem("Selected Product Type is not valid."));
-                }
-
-                if (VM.POC.AmountTotal <= 0)
+            if (VM.POC.AmountTotal <= 0)
+            {
+                if (postType)
                 {
                     VM.Alerts.Add(new AlertItem("Amount must be a positive number."));
                 }
+                    
+                else
+                    VM.POC.AmountTotal = 0;
+            }
 
-                if (VM.POC.PricePerTon <= 0)
+            if (VM.POC.PricePerTon <= 0)
+            {
+                if (postType)
                 {
                     VM.Alerts.Add(new AlertItem("Price Per Ton must be a positive number."));
                 }
+                else
+                    VM.POC.PricePerTon = 0;
             }
+            
         }
 
         protected override void Dispose(bool disposing)
