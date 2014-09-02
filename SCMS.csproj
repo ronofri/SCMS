@@ -200,6 +200,7 @@
     <Compile Include="RSolverTools\GanttSource.cs" />
     <Compile Include="RSolverTools\TablesHelper.cs" />
     <Compile Include="ViewModels\GM_Inbox\ListPOCViewModel.cs" />
+    <Compile Include="ViewModels\GM_POC\DetailsPOCViewModel.cs" />
     <Compile Include="ViewModels\GM_POC\CreateEditPOCViewModel.cs" />
     <Compile Include="ViewModels\GM_Search\SearchPOCViewModel.cs" />
   </ItemGroup>
@@ -289,6 +290,8 @@
     <Content Include="Views\GM_POC\EditPOC.cshtml" />
     <Content Include="Views\GM_Search\AjaxSearchPOC.cshtml" />
     <Content Include="Views\GM_Search\SearchPOC.cshtml" />
+    <Content Include="Views\GM_POC\DetailsPOC.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DetailsPOC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
