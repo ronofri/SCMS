@@ -19,8 +19,20 @@ namespace SCMS.Controllers
     {
         private DataBaseContext db = new DataBaseContext();
         //
-        // GET: /GM_POC/
+        // GET: /GM_POC/DetailsPOC/5
+        public ActionResult DetailsPOC(int id)
+        {
+            DetailsPOCViewModel VM = new DetailsPOCViewModel();
+            foreach (Schedule schedule in db.Schedule.Include(p => p.POC).ToList<Schedule>())
+            {
+                if(schedule.POC.POCID == id)
+                    VM.Schedule = schedule;
+            }
+            return View(VM);
+        }
 
+        //
+        // GET: /GM_POC/
         public ActionResult CreatePOC()
         {
             CreateEditPOCViewModel VM = new CreateEditPOCViewModel();
@@ -343,6 +355,20 @@ namespace SCMS.Controllers
                     VM.POC.PricePerTon = 0;
             }
             
+        }
+
+        public JsonResult ShipmentTest(int scheduleID)
+        {
+            Schedule schedule = db.Schedule.Find(scheduleID);
+            List<Shipment> shipments = schedule.Shipments.ToList<Shipment>();
+            List<GanttSource> source = new List<GanttSource>();
+
+            foreach (Shipment s in shipments)
+            {
+                source.Add(new GanttSource(s));
+            }
+
+            return Json(source, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

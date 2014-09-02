@@ -40,7 +40,7 @@
             useCookie: false,
             maxScale: "months",
             minScale: "hours",
-            waitText: "Please wait...",
+            waitText: "Loading shipments...",
             onItemClick: function (data) { return; },
             onAddClick: function (data) { return; },
             onRender: function() { return; },
@@ -618,7 +618,6 @@
                         var dataPanel = core.dataPanel(element, range.length * tools.getCellSize());
 
                         dataPanel.append(yearArr.join("") + monthArr.join("") + dayArr.join("") + (dowArr.join("")));
-
                         break;
 
                     // **Months**
@@ -1424,7 +1423,20 @@
                     setTimeout(fn, 500);
 
                 } else if (element.loader) {
-                  element.loader.detach();
+                    element.loader.detach();
+                    var width = $(".leftPanel").width() + $(".dataPanel").width();
+                    $(".gantt").css("margin", "20px");
+                    if (width > $(".content").width()) {
+                        $(".gantt").css("margin","20px auto");
+                        width = $(".content").width();
+                    }
+                    if (width < 700)
+                        width = 700;
+                    $("#.gantt").css({
+                        width: width
+                        
+                    });
+
                 }
             }
         };
@@ -1756,7 +1768,6 @@
             this.loader = null;
 
             core.create(this);
-
         });
 
     };

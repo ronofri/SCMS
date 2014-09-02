@@ -1,0 +1,64 @@
+﻿@model SCMS.ViewModels.GM_POC.DetailsPOCViewModel
+
+@{
+    ViewBag.Title = "Details POC: " + Model.Schedule.POC.POCID;
+    Layout = "~/Views/Shared/_LayoutGM.cshtml";
+}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="block span8">
+            <div class="dropdown" style="float:right; margin:1px 1px 0 0">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    <img src="~/Content/images/iconCog.png" width="15" height="15">
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = Model.Schedule.POC.POCID })</li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation">@Html.ActionLink("Delete", "Delete", new { id = Model.Schedule.POC.POCID })</li>
+                </ul>
+            </div>
+            <a class="block-heading">POC Number: @Html.DisplayFor(model => Model.Schedule.POC.POCID)</a>
+            
+            <br />
+            @Html.DisplayFor(model => model, "DetailsPOC")
+        </div>
+    </div>
+</div>
+<div id="Schedule">
+    @if (Model.Schedule.Shipments.Count != 0)
+    {
+        <div class="gantt">
+        </div>
+    }
+    else
+    {
+        @Html.DisplayFor(model => Model.alert)
+        <button class="btn btn-primary btn-lg center-block">Add new Shipment</button>
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var schedule = @Model.Schedule.ScheduleID
+        $.ajax(
+            {
+                url: '/GM_POC/ShipmentTest',
+                type: 'GET',
+                dataType: 'json',
+                data: {scheduleID: schedule },
+                success: function (result) {
+                    //alert(JSON.stringify(result));
+                    $(".gantt").gantt({
+                        source: result,
+                        scale: "weeks",
+                        minScale: "days",
+                        maxScale: "months",
+                        navigate: "scroll",
+                        itemsPerPage: 10,
+                        scrollToToday: true
+                    });
+                },
+                error: function () { } //should change div element html and ask the user to refresh
+
+            });
+    });
+</script>
