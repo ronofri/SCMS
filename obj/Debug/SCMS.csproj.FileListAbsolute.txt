@@ -188,7 +188,6 @@ C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Web.WebPages.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Web.WebPages.Razor.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.Data.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.WebData.dll
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\EntityFramework.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Microsoft.Web.Infrastructure.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Net.Http.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Net.Http.Formatting.xml
