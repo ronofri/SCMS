@@ -17,5 +17,10 @@ namespace SCMS.ViewModels.GM_Inbox
         {
             tablesHelper = new TablesHelper(source, "GM");
         }
+
+        public ListPOCViewModel(List<POC> source, string user)
+        {
+            tablesHelper = new TablesHelper(source, user);
+        }
     }
 }

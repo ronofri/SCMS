@@ -201,6 +201,7 @@
     <Compile Include="RSolverTools\TablesHelper.cs" />
     <Compile Include="ViewModels\GM_Inbox\ListPOCViewModel.cs" />
     <Compile Include="ViewModels\GM_POC\CreateEditPOCViewModel.cs" />
+    <Compile Include="ViewModels\GM_Search\SearchPOCViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
@@ -286,6 +287,8 @@
     <Content Include="Views\GM_Inbox\Inbox.cshtml" />
     <Content Include="Views\GM_POC\CreatePOC.cshtml" />
     <Content Include="Views\GM_POC\EditPOC.cshtml" />
+    <Content Include="Views\GM_Search\AjaxSearchPOC.cshtml" />
+    <Content Include="Views\GM_Search\SearchPOC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">

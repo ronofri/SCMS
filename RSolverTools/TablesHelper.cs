@@ -14,9 +14,17 @@ namespace SCMS.RSolverTools
 
         public TablesHelper(List<POC> source, string user)
         {
-            initializePOC();
-            ListFilter(source);
-            FlagFilter(user);
+            if (user == "All")
+            {
+                ListAll(source);
+            }
+
+            else 
+            {
+                initializePOC();
+                ListFilter(source);
+                FlagFilter(user);
+            } 
         }
 
         public void initializePOC()
@@ -25,7 +33,7 @@ namespace SCMS.RSolverTools
             Flags.Add("PO Number", true);
             Flags.Add("PO Status", true);
             Flags.Add("Customer Name", true);
-            Flags.Add("Csutomer Address", true);
+            Flags.Add("Customer Address", true);
             Flags.Add("Destination Port", true);
             Flags.Add("Incoterm", true);
             Flags.Add("Product Type", true);
@@ -59,6 +67,26 @@ namespace SCMS.RSolverTools
                         break;
                 }
             }
+        }
+
+        public void ListAll(List<POC> source)
+        {
+            Flags = new Dictionary<string, bool>();
+            Flags.Add("PO Number", true);
+            Flags.Add("PO Status", true);
+            Flags.Add("Customer Name", true);
+            Flags.Add("Customer Address", true);
+            Flags.Add("Destination Port", true);
+            Flags.Add("Incoterm", true);
+            Flags.Add("Product Type", true);
+            Flags.Add("Amount (Tons)", true);
+            Flags.Add("Price Per Tons", true);
+            Flags.Add("Creation Date", true);
+
+            POCs = new Dictionary<string, List<POC>>();
+            List<POC> all = source;
+
+            POCs.Add("0", all);
         }
 
         public void FlagFilter(string query)

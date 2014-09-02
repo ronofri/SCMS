@@ -188,11 +188,6 @@ C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Web.WebPages.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Web.WebPages.Razor.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.Data.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.WebData.dll
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Antlr3.Runtime.pdb
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Newtonsoft.Json.xml
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Web.Optimization.xml
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Web.Optimization.Less.pdb
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Web.Optimization.Less.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\EntityFramework.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Microsoft.Web.Infrastructure.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Net.Http.xml
@@ -209,12 +204,6 @@ C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Web.WebPages.Razor.
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.Data.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.WebData.xml
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\DotNetOpenAuth.AspNet.xml
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\DotNetOpenAuth.Core.xml
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\DotNetOpenAuth.OAuth.Consumer.xml
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\DotNetOpenAuth.OAuth.xml
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\DotNetOpenAuth.OpenId.xml
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csprojResolveAssemblyReference.cache
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.InitialMigration.resources
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csproj.GenerateResource.Cache
