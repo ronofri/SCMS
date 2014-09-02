@@ -1423,7 +1423,7 @@
                     setTimeout(fn, 500);
 
                 } else if (element.loader) {
-                    element.loader.detach();
+                    element.loader.detach();                    
                     var width = $(".leftPanel").width() + $(".dataPanel").width();
                     $(".gantt").css("margin", "20px");
                     if (width > $(".content").width()) {
@@ -1432,7 +1432,7 @@
                     }
                     if (width < 700)
                         width = 700;
-                    $("#.gantt").css({
+                    $(".gantt").css({
                         width: width
                         
                     });
