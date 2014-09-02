@@ -1,0 +1,85 @@
+﻿@model SCMS.ViewModels.GM_Inbox.ListPOCViewModel
+
+@{
+    ViewBag.Title = "SearchPOC";
+    Layout = "~/Views/Shared/_LayoutGM.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="block">
+            <a class="block-heading">Search PO's</a>
+                <div class="form-group">
+                    <input type="text" id="queryText" />
+                    <input id="searchButton" class="btn btn-primary" type="submit" value="Search" />
+
+                    <div class="form-group">
+                        <label>Ball Type</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="ballType"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Destination Port</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="destinationPort"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Customer</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="customer"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="status"/>
+                    </div>
+
+                </div>
+        </div>
+
+        <div class="block">
+            <div id="searchResults">
+                @Html.Partial("~/Views/GM_Search/AjaxSearchPOC.cshtml", Model)
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchButton").on("click", function (e) {
+            e.preventDefault();
+
+            var queryText = $('#queryText').val();
+            var ballType = $('#ballType').is(':checked');
+            var destinationPort = $('#destinationPort').is(':checked');
+            var customer = $('#customer').is(':checked');
+            var status = $('#status').is(':checked');
+
+            var queryObject = { 
+                'query': queryText, 
+                'ballType': ballType, 
+                'destinationPort': destinationPort,
+                'customer': customer,
+                'status': status
+            };
+
+            var jsonQuery = JSON.stringify(queryObject);
+            $.ajax({
+                url: '/GM_Search/AjaxSearchPOC',
+                data: { jsonQuery: jsonQuery },
+                cache: false,
+                type: "POST",
+                dataType: "html",
+                success: function (data, textStatus, XMLHttpRequest) {
+                    $("#searchResults").html(data);
+                }
+            });
+        });
+    });
+</script>
