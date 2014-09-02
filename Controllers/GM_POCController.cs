@@ -11,6 +11,7 @@ using SCMS.RSolverTools;
 
 using System.Data;
 using System.Data.Entity;
+using System.Web.Script.Serialization;
 
 
 namespace SCMS.Controllers
@@ -357,7 +358,7 @@ namespace SCMS.Controllers
             
         }
 
-        public JsonResult ShipmentTest(int scheduleID)
+        public JsonResult ShipmentSource(int scheduleID)
         {
             Schedule schedule = db.Schedule.Find(scheduleID);
             List<Shipment> shipments = schedule.Shipments.ToList<Shipment>();
@@ -370,6 +371,41 @@ namespace SCMS.Controllers
             }
 
             return Json(source, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ShipmentAdd(string jsonShipment, int scheduleID)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Shipment shipment = serializer.Deserialize<Shipment>(jsonShipment);
+
+            Schedule schedule = db.Schedule.Find(scheduleID);
+            List<Shipment> shipments = schedule.Shipments.ToList<Shipment>();
+
+            int maxNumber = 0;
+            foreach (Shipment s in shipments)
+            {
+                if (s.ShipmentNumber > maxNumber)
+                {
+                    maxNumber = s.ShipmentNumber;
+                }
+            }
+
+            shipment.ShipmentNumber = maxNumber + 1;
+
+            shipment.Schedule = schedule;
+
+            db.Shipment.Add(shipment);
+            //db.Shipment.Remove( db.Shipment.Find(15));
+            //try and catch are missing
+            int success = db.SaveChanges();
+
+            var jsonData = new { };
+
+            return new JsonResult
+            {
+                Data = jsonData,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
 
         protected override void Dispose(bool disposing)

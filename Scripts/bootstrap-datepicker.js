@@ -376,6 +376,103 @@
 		_detachEvents: function(){
 			this._unapplyEvents(this._events);
 		},
+
+
+		getWeek: function (weekday, day, month, year) {
+		    var ordinal = day;
+		    switch (month) {
+		        case 0:
+		            ordinal += 0;
+		            break;
+		        case 1:
+		            ordinal += 31;
+		            break;
+		        case 2:
+		            if (year % 4 == 0) {
+		                ordinal += 60;
+		            }
+		            else {
+		                ordinal += 59;
+		            }
+		            break;
+		        case 3:
+		            if (year % 4 == 0) {
+		                ordinal += 91;
+		            }
+		            else {
+		                ordinal += 90;
+		            }
+		            break;
+		        case 4:
+		            if (year % 4 == 0) {
+		                ordinal += 121;
+		            }
+		            else {
+		                ordinal += 120;
+		            }
+		            break;
+		        case 5:
+		            if (year % 4 == 0) {
+		                ordinal += 152;
+		            }
+		            else {
+		                ordinal += 151;
+		            }
+		            break;
+		        case 6:
+		            if (year % 4 == 0) {
+		                ordinal += 182;
+		            }
+		            else {
+		                ordinal += 181;
+		            }
+		            break;
+		        case 7:
+		            if (year % 4 == 0) {
+		                ordinal += 213;
+		            }
+		            else {
+		                ordinal += 212;
+		            }
+		            break;
+		        case 8:
+		            if (year % 4 == 0) {
+		                ordinal += 244;
+		            }
+		            else {
+		                ordinal += 243;
+		            }
+		            break;
+		        case 9:
+		            if (year % 4 == 0) {
+		                ordinal += 274;
+		            }
+		            else {
+		                ordinal += 273;
+		            }
+		            break;
+		        case 10:
+		            if (year % 4 == 0) {
+		                ordinal += 305;
+		            }
+		            else {
+		                ordinal += 304;
+		            }
+		            break;
+		        case 11:
+		            if (year % 4 == 0) {
+		                ordinal += 335;
+		            }
+		            else {
+		                ordinal += 334;
+		            }
+		            break;
+		    }
+		    var week = (ordinal - weekday + 10) / 7
+		    week = Math.floor(week);
+		    return week;
+		},
+
 		_attachSecondaryEvents: function(){
 			this._detachSecondaryEvents();
 			this._applyEvents(this._secondaryEvents);
@@ -698,27 +795,27 @@
 		},
 
 		getClassNames: function(date){
-			var cls = [],
+		    var cls = [],
 				year = this.viewDate.getUTCFullYear(),
 				month = this.viewDate.getUTCMonth(),
 				today = new Date();
-			if (date.getUTCFullYear() < year || (date.getUTCFullYear() === year && date.getUTCMonth() < month)){
-				cls.push('old');
-			}
-			else if (date.getUTCFullYear() > year || (date.getUTCFullYear() === year && date.getUTCMonth() > month)){
-				cls.push('new');
-			}
-			if (this.focusDate && date.valueOf() === this.focusDate.valueOf())
-				cls.push('focused');
-			// Compare internal UTC date with local today, not UTC today
-			if (this.o.todayHighlight &&
+		    if (date.getUTCFullYear() < year || (date.getUTCFullYear() === year && date.getUTCMonth() < month)){
+		        cls.push('old');
+		    }
+		    else if (date.getUTCFullYear() > year || (date.getUTCFullYear() === year && date.getUTCMonth() > month)){
+		        cls.push('new');
+		    }
+		    if (this.focusDate && date.valueOf() === this.focusDate.valueOf())
+		        cls.push('focused');
+		    // Compare internal UTC date with local today, not UTC today
+		    if (this.o.todayHighlight &&
 				date.getUTCFullYear() === today.getFullYear() &&
 				date.getUTCMonth() === today.getMonth() &&
 				date.getUTCDate() === today.getDate()){
-				cls.push('today');
-			}
-			if (this.dates.contains(date) !== -1)
-				cls.push('active');
+		        cls.push('today');
+		    }
+		    if (this.dates.contains(date) !== -1)
+		        cls.push('active');
 			if (date.valueOf() < this.o.startDate || date.valueOf() > this.o.endDate ||
 				$.inArray(date.getUTCDay(), this.o.daysOfWeekDisabled) !== -1){
 				cls.push('disabled');
@@ -818,8 +915,8 @@
 						.find('span').removeClass('active');
 
 			$.each(this.dates, function(i, d){
-				if (d.getUTCFullYear() === year)
-					months.eq(d.getUTCMonth()).addClass('active');
+			    if (d.getUTCFullYear() === year) 
+			        months.eq(d.getUTCMonth()).addClass('active');				
 			});
 
 			if (year < startYear || year > endYear){
@@ -979,7 +1076,7 @@
 						}
 						break;
 					case 'td':
-						if (target.is('.day') && !target.is('.disabled')){
+					    if (target.is('.day') && !target.is('.disabled')&&!target.is('.active')){
 							day = parseInt(target.text(), 10)||1;
 							year = this.viewDate.getUTCFullYear();
 							month = this.viewDate.getUTCMonth();
@@ -1002,7 +1099,26 @@
 								}
 							}
 							this._setDate(UTCDate(year, month, day));
-						}
+							var cYear = year;
+							var cMonth = month;
+							var cDay = day;
+							var weekday = this.viewDate.getUTCDay() + 1;
+							var week = this.getWeek(weekday, day, month, year);
+							var weekTest = week;
+							while (weekTest == week) {
+							    weekday--;
+							    if (weekday == 0)
+							        weekday = 7;
+							    day--;
+							    var weekTest = this.getWeek(weekday, day, month, year);
+							}
+							day++;
+							if (!(cYear == year && cMonth == month && cDay == day))
+							    this._setDate(UTCDate(year, month, day));
+					    }
+					    else if (target.is('.day') && !target.is('.disabled') && target.is('.active')) {
+					        this._setDate(this.getUTCDate());
+					    }
 						break;
 				}
 			}
@@ -1599,6 +1715,7 @@
 		megaFunction: function(date, format, language){
 
 		},
+
 		headTemplate: '<thead>'+
 							'<tr>'+
 								'<th class="prev">&laquo;</th>'+

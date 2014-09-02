@@ -77,7 +77,7 @@
                         @if(Model.tablesHelper.Flags["PO Number"])
                         {
                             <td>
-                                @Html.ActionLink("" + item.POCID, "Details", new { id = item.POCID })
+                                @Html.ActionLink("" + item.POCID, "DetailsPOC", new { id = item.POCID, controller = "GM_POC" })
                             </td>
                         }
                         @if(Model.tablesHelper.Flags["PO Status"])
@@ -141,7 +141,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
                                     <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = item.POCID , controller = "GM_POC"})</li>
-                                    <li role="presentation">@Html.ActionLink("Details", "Details", new { id = item.POCID })</li>
+                                    <li role="presentation">@Html.ActionLink("Details", "DetailsPOC", new { id = item.POCID, controller = "GM_POC" })</li>
                                     <li role="presentation" class="divider"></li>
                                     <li role="presentation">@Html.ActionLink("Delete", "Delete", new { id = item.POCID })</li>
                                 </ul>

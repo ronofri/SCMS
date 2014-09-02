@@ -203,7 +203,6 @@ C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Web.WebPages.Razor.
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.Data.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.WebData.xml
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csprojResolveAssemblyReference.cache
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.InitialMigration.resources
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csproj.GenerateResource.Cache
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.dll

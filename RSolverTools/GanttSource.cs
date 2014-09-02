@@ -24,6 +24,8 @@ namespace SCMS.RSolverTools
     {
         public GanttValue(Shipment shipment) 
         {
+            shipment.Schedule = null;
+
             @from = shipment.EstimatedTimeDeparture; // @ is needed to escape the from keyword
             to = shipment.EstimatedTimeArrival;
             desc = shipment.Amount + " Tons";
