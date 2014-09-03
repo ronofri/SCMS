@@ -394,8 +394,6 @@ namespace SCMS.Controllers
                 {
                     maxNumber = s.ShipmentNumber;
                 }
-
-                tonsLeft = tonsLeft - s.Amount;
             }
 
             shipment.ShipmentNumber = maxNumber + 1;
@@ -403,24 +401,54 @@ namespace SCMS.Controllers
             shipment.Schedule = schedule;
 
             int success = -1;
-            
-            if(!(tonsLeft - shipment.Amount < 0))
+            string error = "";
+
+            bool attempSave = true;
+
+            if (shipment.Amount <= 0) 
             {
-                db.Shipment.Add(shipment);
-                //db.Shipment.Remove( db.Shipment.Find(15));
-                //try and catch are missing
-                success = db.SaveChanges();
+                error = "Shipment amount must be greater than 0.";
+                attempSave = false;
             }
 
-            List<int> result = new List<int>();
-            result.Add(success);
-            result.Add(tonsLeft - shipment.Amount);
-
-            return new JsonResult
+            if(tonsLeft - shipment.Amount < 0)
             {
-                Data = result.ToArray(),
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
+                error = "Shipment amount exceeds the limit. Tons left: " + tonsLeft;
+                attempSave = false;
+            }
+
+            if (shipment.EstimatedTimeDeparture > shipment.EstimatedTimeArrival)
+            {
+                error = "ETD should be less than or equal to ETA.";
+                attempSave = false;
+            }
+            
+            if(attempSave)//Verificar segun Incoterms
+            {
+                db.Shipment.Add(shipment);
+
+                try
+                {
+                    success = db.SaveChanges();
+                }
+
+                catch 
+                {
+                    error = "Error while saving changes in database.";
+                }
+            }
+
+            var jsonObject = new {success = success, tonsLeft = tonsLeft - shipment.Amount, errorText = error };
+            //List<int> result = new List<int>();
+            //result.Add(success);
+            //result.Add(tonsLeft - shipment.Amount);
+
+            //return new JsonResult
+            //{
+            //    Data = result.ToArray(),
+            //    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            //};
+            return Json(jsonObject, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
