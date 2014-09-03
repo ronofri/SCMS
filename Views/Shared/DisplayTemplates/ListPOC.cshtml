@@ -144,7 +144,8 @@
                                     <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = item.POCID, controller = "GM_POC" })</li>
                                     <li role="presentation">@Html.ActionLink("Details", "DetailsPOC", new { id = item.POCID, controller = "GM_POC" })</li>
                                     <li role="presentation" class="divider"></li>
-                                    <li role="presentation">@Html.ActionLink("Delete", "Delete", new { id = item.POCID })</li>
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.POCID })*@
+                                    <li role="presentation"><a data-toggle="modal" data-target="#deleteModal" id=@item.POCID>Delete</a></li>
                                 </ul>
                             </div>
                         </td>

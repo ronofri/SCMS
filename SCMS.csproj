@@ -292,6 +292,7 @@
     <Content Include="Views\GM_Search\SearchPOC.cshtml" />
     <Content Include="Views\GM_POC\DetailsPOC.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DetailsPOC.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DeleteConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
