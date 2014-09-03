@@ -56,8 +56,8 @@
                 </div>
                 <div class="form-group">
                     <label>Amount (Tons)</label>
-                    <input class="amount" name="Amount" type="text" />
-                    <label id="tonsMessage">@Model.Schedule.TonsLeft</label>
+                    <input class="amount" name="Amount" type="text"/>
+                    <label id="tonsMessage" style="color:red"></label>
                 </div>
             </div>
             <div>
@@ -73,7 +73,7 @@
 
     $(document).ready(function () {
         function ganttLoader(){
-
+            
             var schedule = @Model.Schedule.ScheduleID;
             $.ajax(
             {
@@ -100,22 +100,51 @@
 
         ganttLoader();
 
-        $("#addNew").on("click", function () {
-            $("#Schedule div").detach();
-            $("#Schedule").html("<div class='gantt'></div>");
-            ganttLoader();
-        });
+        $('.amount').val(@Model.Schedule.TonsLeft);
 
 
         $('#saveShipment').on('click', function (e) {
+
             e.preventDefault();
+
+            $('#tonsMessage').val("");
+
             var shipmentDiv = $('.shipment');
 
             var dep = shipmentDiv.find('.departure').val();
             var arr = shipmentDiv.find('.arrival').val();
             var am = shipmentDiv.find('.amount').val();
 
-            if (dep == "" || arr == "" || am == "") {// some validation
+            var valid = true;
+
+            var validationError = "";
+
+            if (!(Math.floor(am) == am && $.isNumeric(am) && am > 0)) {
+                valid = false;
+                validationError = "Shipment amount must be a number greater than 0.";
+            }
+
+            if (dep == "")
+            {
+                valid = false;
+                validationError = "Estimated Time of Departure is required.";
+            }
+            
+            if(arr == "")
+            {
+                valid = false;
+                validationError = "Estimated Time of Arrival is required.";
+            } 
+            
+            if(am == "") 
+            { 
+                valid = false;
+                validationError = "Shipment Amount is required.";
+            }
+
+            if(!valid)
+            {
+                $('#tonsMessage').text(validationError);
                 return false;
             }
 
@@ -130,15 +159,29 @@
                 dataType: 'json',
                 data: { 'jsonShipment': jsonShipment, scheduleID: schedule },
                 success: function (result) {
-                    var success = result[0];
-                    var tonsLeft = result[1];
+                    //alert(JSON.stringify(result));
+                    var success = result.success;
+                    var tonsLeft = result.tonsLeft;
+                    var errorText = result.errorText;
+
+                    //alert (errorText);
 
                     if(success != -1){
                         $("#Schedule div").detach();
                         $("#Schedule").html("<div class='gantt'></div>");
+                        var shipmentDiv = $('.shipment');
+
+                        shipmentDiv.find('.departure').val("");
+                        shipmentDiv.find('.arrival').val("");
+                        shipmentDiv.find('.amount').val(tonsLeft);
+                    }
+
+                    else
+                    {
+                        $('#tonsMessage').text(errorText);
                     }
                 },
-                complete: function(){alert("ajax complete");ganttLoader();}
+                complete: function(){ganttLoader();}
             });
 
         });
@@ -164,5 +207,9 @@
     });
     $(document).on('mouseleave', ".week", function () {
         $(this).children(".day").each(function () { $(this).removeClass("focused") });
+    });
+
+    $("input:text").on("click", function () {
+        $(this).select();
     });
 </script>
