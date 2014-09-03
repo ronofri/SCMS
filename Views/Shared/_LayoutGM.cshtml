@@ -19,8 +19,8 @@
         $(".accordion").on("click", function () {
             var speed = $(this).parent().children(".table").height() * 1.5;
             $(this).parent().children(".table").animate({ height: "toggle" }, (speed), function () {                
-                if ($(this).parent().children(".table").css("display") == "block") {
-                    $(this).parent().children(".table").css("overflow","");
+                if ($(this).css("display") == "block") {
+                    $(this).css("overflow","");
                 }
                 
             });

@@ -9,36 +9,60 @@
     <div class="row-fluid">
         <div class="block">
             <a class="block-heading">Search PO's</a>
-                <div class="form-group">
-                    <input type="text" id="queryText" />
-                    <input id="searchButton" class="btn btn-primary" type="submit" value="Search" />
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span4" style="padding:20px 0px 0px 20px">
+                        <input type="text" id="queryText" />
+                        <input id="searchButton" class="btn btn-primary" type="submit" value="Search" />
 
-                    <div class="form-group">
-                        <label>Ball Type</label>
+                        <div class="form-group">
+                            <input type="radio" name="filter" id="POCID" checked />
+                            <label>POC Number</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="radio" name="filter" id="customer" />
+                            <label>Customer/Port</label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="ballType"/>
+                    <div class="span4" style="padding-top:20px">
+                        <div class="collapse in">
+                            <div class="form-group">
+                                <label>Test</label>
+                                @*@Html.LabelFor(model => model.SelectedIncotermId)*@
+                                <select data-val="true" data-val-number="El campo Product Type (Ball Inches) debe ser un número." data-val-required="El campo Product Type (Ball Inches) es obligatorio." id="SelectedProductId" name="SelectedProductId">
+                                    <option value="">Select Product Type</option>
+                                    <option value="1">3.5"</option>
+                                    <option value="2">5.5"</option>
+                                    <option value="3">7.5"</option>
+                                </select>
+                                @*@Html.DropDownListFor(model => model.SelectedIncotermId, Model.IncotermItems, "Select Incoterm")*@
+                                <br />
+                                <label>Test</label>
+                                @*@Html.LabelFor(model => model.SelectedIncotermId)*@
+                                <select data-val="true" data-val-number="El campo Product Type (Ball Inches) debe ser un número." data-val-required="El campo Product Type (Ball Inches) es obligatorio." id="SelectedProductId" name="SelectedProductId">
+                                    <option value="">Select Product Type</option>
+                                    <option value="1">3.5"</option>
+                                    <option value="2">5.5"</option>
+                                    <option value="3">7.5"</option>
+                                </select>
+                                @*@Html.DropDownListFor(model => model.SelectedIncotermId, Model.IncotermItems, "Select Incoterm")*@
+                                <br />
+                                <label>Test</label>
+                                @*@Html.LabelFor(model => model.SelectedIncotermId)*@
+                                <select data-val="true" data-val-number="El campo Product Type (Ball Inches) debe ser un número." data-val-required="El campo Product Type (Ball Inches) es obligatorio." id="SelectedProductId" name="SelectedProductId">
+                                    <option value="">Select Product Type</option>
+                                    <option value="1">3.5"</option>
+                                    <option value="2">5.5"</option>
+                                    <option value="3">7.5"</option>
+                                </select>
+                                @*@Html.DropDownListFor(model => model.SelectedIncotermId, Model.IncotermItems, "Select Incoterm")*@
+                            </div>
+                        </div>
+                        <a class="filter btn" style="color:#414959">>>Advanced filters</a>
+                        
                     </div>
-                    <div class="form-group">
-                        <label>Destination Port</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="destinationPort"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Customer</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="customer"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Status</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="status"/>
-                    </div>
-
                 </div>
+            </div>
         </div>
 
         <div class="block">
@@ -48,7 +72,27 @@
         </div>
 
     </div>
-</div>
+        </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".filter").parent().children(".collapse").animate({ height: "toggle" }, 0);
+        $(".filter").on("click", function () {
+            $(this).parent().children(".collapse").animate({ height: "toggle" }, 80, function () {
+                if ($(this).css("display") == "block") {
+                    //$(this).css("overflow", "");
+                    $(this).children().css("margin-bottom","0px");
+                    $(this).parent().children(".filter").text("Back<<");
+                }
+                else {
+                    $(this).parent().children(".filter").text(">>Advanced filters");
+                }
+                //$("#SelectedProductId option:selected").val("");
+            });
+        });
+    });
+</script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {
