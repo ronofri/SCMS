@@ -1,159 +1,158 @@
 ﻿@model SCMS.ViewModels.GM_Inbox.ListPOCViewModel
 
-@foreach(KeyValuePair<string,List<SCMS.Models.POC>> pair in Model.tablesHelper.POCs)
+@foreach (KeyValuePair<string, List<SCMS.Models.POC>> pair in Model.tablesHelper.POCs)
 {
     if (pair.Value.Count() > 0)
     {
-    <div class="block">
-        <a class="block-heading accordion">Recent Incompleted Customer PO's</a>
-        <table class="table collapse in">
-            <tr>
-                @if (Model.tablesHelper.Flags["PO Number"])
-                {
-                    <th>
-                        PO Number
-                    </th>
-                }
-                @if (Model.tablesHelper.Flags["PO Status"])
-                {
-                    <th>
-                        PO Status
-                    </th>
-                }
-                @if (Model.tablesHelper.Flags["Customer Name"])
-                {
-                    <th>
-                        Customer Name
-                    </th>
-                }
-                @if (Model.tablesHelper.Flags["Customer Address"])
-                {
-                    <th>
-                        Customer Address
-                    </th>
-                }
-                @if (Model.tablesHelper.Flags["Destination Port"])
-                {
-                    <th>
-                        Destination Port
-                    </th>
-                }
-                @if (Model.tablesHelper.Flags["Incoterm"])
-                {
-                    <th>
-                        Incoterm
-                    </th>
-                }
-                @if (Model.tablesHelper.Flags["Product Type"])
-                {
-                    <th>
-                        Product Type
-                    </th>
-                }
-                @if (Model.tablesHelper.Flags["Amount (Tons)"])
-                {
-                    <th>
-                        Amount (Tons)
-                    </th>
-                }
-                @if (Model.tablesHelper.Flags["Price Per Tons"])
-                {
-                    <th>
-                        Price Per Tons
-                    </th>
-                }
-                @if (Model.tablesHelper.Flags["Creation Date"])
-                {
-                    <th>
-                        Creation Date
-                    </th>
-                }
-                <th></th>
-            </tr>
-
-            @foreach (var item in pair.Value)
-            {
+        <div class="block">
+            <a class="block-heading accordion">Recent Incompleted Customer PO's</a>
+            <table class="table collapse in">
                 <tr>
                     @if (Model.tablesHelper.Flags["PO Number"])
                     {
-                        <td>
-                            @Html.ActionLink("" + item.POCID, "DetailsPOC", new { id = item.POCID, controller = "GM_POC" })
-                        </td>
+                        <th>
+                            PO Number
+                        </th>
                     }
                     @if (Model.tablesHelper.Flags["PO Status"])
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StatusString)
-                        </td>
+                        <th>
+                            PO Status
+                        </th>
                     }
                     @if (Model.tablesHelper.Flags["Customer Name"])
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Customer.Name)
-                        </td>
+                        <th>
+                            Customer Name
+                        </th>
                     }
                     @if (Model.tablesHelper.Flags["Customer Address"])
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Customer.Address)
-                        </td>
+                        <th>
+                            Customer Address
+                        </th>
                     }
                     @if (Model.tablesHelper.Flags["Destination Port"])
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DestinationPort.Name)
-                        </td>
+                        <th>
+                            Destination Port
+                        </th>
                     }
                     @if (Model.tablesHelper.Flags["Incoterm"])
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CustomerIncoterm.Name)
-                        </td>
+                        <th>
+                            Incoterm
+                        </th>
                     }
                     @if (Model.tablesHelper.Flags["Product Type"])
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Product.Name)
-                        </td>
+                        <th>
+                            Product Type
+                        </th>
                     }
                     @if (Model.tablesHelper.Flags["Amount (Tons)"])
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AmountTotal)
-                        </td>
+                        <th>
+                            Amount (Tons)
+                        </th>
                     }
                     @if (Model.tablesHelper.Flags["Price Per Tons"])
                     {
-                        <td>
-                            $
-                            @Html.DisplayFor(modelItem => item.PricePerTon)
-                        </td>
+                        <th>
+                            Price Per Tons
+                        </th>
                     }
                     @if (Model.tablesHelper.Flags["Creation Date"])
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreationDate)
-                        </td>
+                        <th>
+                            Creation Date
+                        </th>
                     }
-                    <td>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <img src="~/Content/images/iconCog.png" width="15" height="15">
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = item.POCID, controller = "GM_POC" })</li>
-                                <li role="presentation">@Html.ActionLink("Details", "DetailsPOC", new { id = item.POCID, controller = "GM_POC" })</li>
-                                <li role="presentation" class="divider"></li>
-                                <li role="presentation">@Html.ActionLink("Delete", "Delete", new { id = item.POCID })</li>
-                            </ul>
-                        </div>
-                    </td>
+                    <th></th>
                 </tr>
-            }
 
-        </table>
+                @foreach (var item in pair.Value)
+                {
+                    <tr>
+                        @if (Model.tablesHelper.Flags["PO Number"])
+                        {
+                            <td>
+                                @Html.ActionLink("" + item.POCID, "DetailsPOC", new { id = item.POCID, controller = "GM_POC" })
+                            </td>
+                        }
+                        @if (Model.tablesHelper.Flags["PO Status"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StatusString)
+                            </td>
+                        }
+                        @if (Model.tablesHelper.Flags["Customer Name"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Customer.Name)
+                            </td>
+                        }
+                        @if (Model.tablesHelper.Flags["Customer Address"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Customer.Address)
+                            </td>
+                        }
+                        @if (Model.tablesHelper.Flags["Destination Port"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DestinationPort.Name)
+                            </td>
+                        }
+                        @if (Model.tablesHelper.Flags["Incoterm"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerIncoterm.Name)
+                            </td>
+                        }
+                        @if (Model.tablesHelper.Flags["Product Type"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product.Name)
+                            </td>
+                        }
+                        @if (Model.tablesHelper.Flags["Amount (Tons)"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AmountTotal)
+                            </td>
+                        }
+                        @if (Model.tablesHelper.Flags["Price Per Tons"])
+                        {
+                            <td>
+                                $
+                                @Html.DisplayFor(modelItem => item.PricePerTon)
+                            </td>
+                        }
+                        @if (Model.tablesHelper.Flags["Creation Date"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreationDate)
+                            </td>
+                        }
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                    <img src="~/Content/images/iconCog.png" width="15" height="15">
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = item.POCID, controller = "GM_POC" })</li>
+                                    <li role="presentation">@Html.ActionLink("Details", "DetailsPOC", new { id = item.POCID, controller = "GM_POC" })</li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation">@Html.ActionLink("Delete", "Delete", new { id = item.POCID })</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
 
-    </div>
+            </table>
+        </div>
     }
 }
 
