@@ -57,10 +57,12 @@
                 <input class="amount" name="Amount" type="text"/>
             </div>
         </div>
+
+<label id="tonsMessage">@Model.Schedule.TonsLeft;</label>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
-
         function ganttLoader(){
 
             var schedule = @Model.Schedule.ScheduleID;
@@ -119,9 +121,14 @@
                 dataType: 'json',
                 data: { 'jsonShipment': jsonShipment, scheduleID: schedule },
                 success: function (result) {
-                    $("#Schedule div").detach();
-                    $("#Schedule").html("<div class='gantt'></div>");
-                    
+
+                    var success = result[0];
+                    var tonsLeft = result[1];
+
+                    if(success != -1){
+                        $("#Schedule div").detach();
+                        $("#Schedule").html("<div class='gantt'></div>");
+                    }
                 },
                 complete: function(){alert("ajax complete");ganttLoader();}
             });

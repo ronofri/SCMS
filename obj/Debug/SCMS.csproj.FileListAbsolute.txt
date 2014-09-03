@@ -207,3 +207,4 @@ C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.Init
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csproj.GenerateResource.Cache
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.pdb
+C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csprojResolveAssemblyReference.cache

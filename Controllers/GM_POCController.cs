@@ -378,32 +378,47 @@ namespace SCMS.Controllers
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Shipment shipment = serializer.Deserialize<Shipment>(jsonShipment);
 
-            Schedule schedule = db.Schedule.Find(scheduleID);
+            var scheduleFull = db.Schedule.Include(x => x.POC).Include(x => x.Shipments);
+            var schResult = scheduleFull.Where(sch => sch.ScheduleID == scheduleID);
+            Schedule schedule = (schResult.ToList<Schedule>())[0];
+
+            //Schedule schedule = db.Schedule.Find(scheduleID);
             List<Shipment> shipments = schedule.Shipments.ToList<Shipment>();
 
             int maxNumber = 0;
+            int tonsLeft = schedule.TonsLeft;
+
             foreach (Shipment s in shipments)
             {
                 if (s.ShipmentNumber > maxNumber)
                 {
                     maxNumber = s.ShipmentNumber;
                 }
+
+                tonsLeft = tonsLeft - s.Amount;
             }
 
             shipment.ShipmentNumber = maxNumber + 1;
 
             shipment.Schedule = schedule;
 
-            db.Shipment.Add(shipment);
-            //db.Shipment.Remove( db.Shipment.Find(15));
-            //try and catch are missing
-            int success = db.SaveChanges();
+            int success = -1;
+            
+            if(!(tonsLeft - shipment.Amount < 0))
+            {
+                db.Shipment.Add(shipment);
+                //db.Shipment.Remove( db.Shipment.Find(15));
+                //try and catch are missing
+                success = db.SaveChanges();
+            }
 
-            var jsonData = new { };
+            List<int> result = new List<int>();
+            result.Add(success);
+            result.Add(tonsLeft - shipment.Amount);
 
             return new JsonResult
             {
-                Data = jsonData,
+                Data = result.ToArray(),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

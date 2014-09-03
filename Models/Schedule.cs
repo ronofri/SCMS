@@ -13,5 +13,21 @@ namespace SCMS.Models
         public POC POC { get; set; }
 
         public virtual ICollection<Shipment> Shipments { get; set; }
+
+        public int TonsLeft
+        {
+            get
+            {
+                int left = POC.AmountTotal;
+                if (Shipments != null)
+                {
+                    foreach (Shipment shipment in Shipments)
+                    {
+                        left -= shipment.Amount;
+                    }
+                }
+                return left;
+            }
+        }
     }
 }
