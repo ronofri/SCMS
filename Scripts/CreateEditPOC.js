@@ -72,7 +72,7 @@ $(document).ready(function () {
         }
 
         if ($('#SelectedProductId option:selected').val() == "") {
-            $('#error_ball').text("Ball Type value is Required");
+            $('#error_ball').text("Product Type value is Required");
             $('#error_ball').removeClass('hidden');
             sendPost = false;
         }

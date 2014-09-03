@@ -39,9 +39,10 @@ namespace SCMS.ViewModels.GM_POC
             get { return new SelectList(Products, "ProductID", "Name"); }
         }
 
-
+        [Display(Name = "Customer")]
         public string CustomerProperty { get; set; }
 
+        [Display(Name = "Port")]
         public string PortProperty { get; set; }
     }
 }

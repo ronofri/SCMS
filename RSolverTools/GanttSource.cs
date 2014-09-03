@@ -24,6 +24,7 @@ namespace SCMS.RSolverTools
     {
         public GanttValue(Shipment shipment) 
         {
+            //To avoid serialize cycle error (JSON)
             shipment.Schedule = null;
 
             @from = shipment.EstimatedTimeDeparture; // @ is needed to escape the from keyword
