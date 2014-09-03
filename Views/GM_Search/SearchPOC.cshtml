@@ -100,17 +100,20 @@
             e.preventDefault();
 
             var queryText = $('#queryText').val();
-            var ballType = $('#ballType').is(':checked');
-            var destinationPort = $('#destinationPort').is(':checked');
-            var customer = $('#customer').is(':checked');
-            var status = $('#status').is(':checked');
+            var searchByPOC = $('#pocNumber').is(':checked'); //add selector for radio checkbox poc number
 
-            var queryObject = { 
-                'query': queryText, 
-                'ballType': ballType, 
-                'destinationPort': destinationPort,
-                'customer': customer,
-                'status': status
+            var productVal = $('#dropdownProduct option:selected').val();
+            var statusVal = $('#dropdownStatus option:selected').val();
+            var monthVal = $('#dropdownMonth option:selected').val();
+            var yearVal = $('#dropdownYear option:selected').val();
+
+            var queryObject = {
+                'query': queryText,
+                'searchByPOC': searchByPOC, //true is for searching by ID, false to search by customer/port
+                'productType': productVal,
+                'statusPOC': statusVal,
+                'month': monthVal,
+                'year' : yearVal
             };
 
             var jsonQuery = JSON.stringify(queryObject);

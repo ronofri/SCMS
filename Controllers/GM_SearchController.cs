@@ -41,23 +41,65 @@ namespace SCMS.Controllers
 
         public List<POC> search(QueryObject query) 
         {
-            var POCs = db.POC.Include(x => x.Product).Include(x => x.Customer).Include(x => x.DestinationPort);
 
-            var result = POCs;
+            var allPOC = db.POC.Include(x => x.Product).Include(x => x.Customer).Include(x => x.DestinationPort);
 
-
-
-            if (query.customer) 
+            if (query.searchByPOC)
             {
-                result = result.Where(p => p.Customer.Name.Contains(query.query));
+                int id = 0;
+                int.TryParse(query.query, out id);
+
+                return allPOC.Where(poc => poc.POCID == id).ToList<POC>();
             }
 
-            if (query.status) 
+
+            List<POC> POCs = allPOC.ToList<POC>();
+            List<POC> result = new List<POC>();
+
+            foreach (POC POC in POCs)
             {
- 
+                if (POC.Customer.Name.Contains(query.query)
+                    || POC.Customer.Address.Contains(query.query)
+                    || POC.DestinationPort.Name.Contains(query.query)
+                    || POC.DestinationPort.Address.Contains(query.query)) 
+                {
+                    bool addPOC = true;
+
+                    if(query.productType != 0)
+                    {
+                        if (POC.Product.ProductID != query.productType)
+                        {
+                            addPOC = false;
+                        }
+                    }
+
+                    if (query.statusPOC != 0)
+                    {
+                        if (POC.Status != query.statusPOC)
+                        {
+                            addPOC = false;
+                        }
+                    }
+
+                    if (query.month != 0 || query.year != 0)
+                    {
+                        //DateTime filterDate = new DateTime();
+                        //filterDate.Month = 
+                        //if (POC.Status != query.statusPOC)
+                        //{
+                        //    addPOC = false;
+                        //}
+                    }
+
+                    if (addPOC) 
+                    {
+                        result.Add(POC);
+                    }
+                }
+
             }
 
-            return result.ToList<POC>();
+            return result;
         }
 
     }
@@ -71,14 +113,14 @@ namespace SCMS.Controllers
 
         public string query { get; set; }
 
-        public bool ballType { get; set; }
+        public bool searchByPOC { get; set; }
 
-        public bool destinationPort { get; set; }
+        public int productType { get; set; }
 
-        public bool customer { get; set; }
+        public int statusPOC { get; set; }
 
-        public bool status { get; set; }
+        public int month { get; set; }
 
-        public DateTime? creationDate { get; set; }
+        public int year { get; set; }
     }
 }
