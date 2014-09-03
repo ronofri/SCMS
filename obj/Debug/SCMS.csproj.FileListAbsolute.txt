@@ -127,11 +127,6 @@ C:\Users\Cristian\Desktop\RSolver\SCMS\bin\System.Web.WebPages.dll
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\System.Web.WebPages.Razor.dll
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\WebMatrix.Data.dll
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\WebMatrix.WebData.dll
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\Antlr3.Runtime.pdb
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\System.Web.Optimization.xml
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\System.Web.Optimization.Less.pdb
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\System.Web.Optimization.Less.xml
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\EntityFramework.xml
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\Microsoft.Web.Infrastructure.xml
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\System.Net.Http.xml
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\System.Net.Http.Formatting.xml
@@ -147,12 +142,6 @@ C:\Users\Cristian\Desktop\RSolver\SCMS\bin\System.Web.WebPages.Razor.xml
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\WebMatrix.Data.xml
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\WebMatrix.WebData.xml
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\DotNetOpenAuth.AspNet.xml
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\DotNetOpenAuth.Core.xml
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\DotNetOpenAuth.OAuth.Consumer.xml
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\DotNetOpenAuth.OAuth.xml
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\DotNetOpenAuth.OpenId.xml
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\es\System.Net.Http.resources.dll
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\es\System.Net.Http.Formatting.resources.dll
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\es\System.Net.Http.WebRequest.resources.dll
