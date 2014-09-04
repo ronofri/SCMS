@@ -22,7 +22,29 @@ namespace SCMS.Controllers
         public ActionResult SearchPOC()
         {
             QueryObject all = new QueryObject();
-            ListPOCViewModel VM = new ListPOCViewModel(search(all), "All");
+            ListPOCViewModel VM = new ListPOCViewModel(searchAll(all), "All");
+
+            List<Product> products = db.Product.ToList();
+
+            List<string> listStatus = new List<string> {"Incomplete","Sent","Cancelled"};
+
+            List<string> months = new List<string> { "January", "February", "March",
+                                                     "April", "May", "June", "July", 
+                                                     "August", "September", "October", "November", "December" };
+            List<int> years = new List<int>();
+
+            for (int i = 1969; i < 2031; i++) 
+            {
+                years.Add(i);
+            }
+
+            VM.Products = products;
+
+            VM.listStatus = listStatus;
+
+            VM.months = months;
+
+            VM.years = years;
 
             return View(VM);
         }
@@ -39,11 +61,19 @@ namespace SCMS.Controllers
             return this.PartialView(VM);
         }
 
-        public List<POC> search(QueryObject query) 
+        public List<POC> searchAll(QueryObject query)
         {
 
             var allPOC = db.POC.Include(x => x.Product).Include(x => x.Customer).Include(x => x.DestinationPort);
 
+            return allPOC.ToList<POC>();
+        }  
+
+        public List<POC> search(QueryObject query) 
+        {
+
+            var allPOC = db.POC.Include(x => x.Product).Include(x => x.Customer).Include(x => x.DestinationPort);
+            query.query = query.query.ToLower();
             if (query.searchByPOC)
             {
                 int id = 0;
@@ -58,16 +88,41 @@ namespace SCMS.Controllers
 
             foreach (POC POC in POCs)
             {
-                if (POC.Customer.Name.Contains(query.query)
-                    || POC.Customer.Address.Contains(query.query)
-                    || POC.DestinationPort.Name.Contains(query.query)
-                    || POC.DestinationPort.Address.Contains(query.query)) 
+                bool customerContains = false;
+                bool portContains = false;
+
+                if (POC.Customer == null && POC.DestinationPort == null) 
+                {
+                     continue;  
+                }
+
+                if(POC.Customer != null)
+                {
+                    if (POC.Customer.Name.ToLower().Contains(query.query) || POC.Customer.Address.ToLower().Contains(query.query))
+                        customerContains = true;
+                }
+
+                if(POC.DestinationPort != null)
+                {
+                    if (POC.DestinationPort.Name.ToLower().Contains(query.query) || POC.DestinationPort.Address.ToLower().Contains(query.query))
+                        portContains = true;
+                }
+
+                if (customerContains || portContains)
                 {
                     bool addPOC = true;
 
                     if(query.productType != 0)
                     {
-                        if (POC.Product.ProductID != query.productType)
+                        if (POC.Product != null)
+                        {
+                            if (POC.Product.ProductID != query.productType)
+                            {
+                                addPOC = false;
+                            }
+                        }
+
+                        else 
                         {
                             addPOC = false;
                         }
@@ -83,12 +138,26 @@ namespace SCMS.Controllers
 
                     if (query.month != 0 || query.year != 0)
                     {
-                        //DateTime filterDate = new DateTime();
-                        //filterDate.Month = 
-                        //if (POC.Status != query.statusPOC)
-                        //{
-                        //    addPOC = false;
-                        //}
+                        int month = 1;
+                        int day = 1;
+                        int year = DateTime.Now.Year;
+
+                        if(query.month != 0)
+                        {
+                            month = query.month;
+                        }
+
+                        if (query.year != 0)
+                        {
+                            year = query.year;
+                        }
+
+                        DateTime filterDate = new DateTime(year, month, day);
+                        
+                        if (POC.CreationDate < filterDate)
+                        {
+                            addPOC = false;
+                        }
                     }
 
                     if (addPOC) 

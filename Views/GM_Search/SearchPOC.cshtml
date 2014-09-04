@@ -27,35 +27,61 @@
                     <div class="span4" style="padding-top:20px">
                         <div class="collapse in">
                             <div class="form-group">
-                                <label>Test</label>
-                                @*@Html.LabelFor(model => model.SelectedIncotermId)*@
-                                <select data-val="true" data-val-number="El campo Product Type (Ball Inches) debe ser un número." data-val-required="El campo Product Type (Ball Inches) es obligatorio." id="SelectedProductId" name="SelectedProductId">
-                                    <option value="">Select Product Type</option>
-                                    <option value="1">3.5"</option>
-                                    <option value="2">5.5"</option>
-                                    <option value="3">7.5"</option>
-                                </select>
-                                @*@Html.DropDownListFor(model => model.SelectedIncotermId, Model.IncotermItems, "Select Incoterm")*@
+                                @Html.LabelFor(model => model.SelectedProductId)
+                                
+                                @Html.DropDownListFor(model => model.SelectedProductId, Model.ProductItems, "Select Product Type")
                                 <br />
-                                <label>Test</label>
-                                @*@Html.LabelFor(model => model.SelectedIncotermId)*@
-                                <select data-val="true" data-val-number="El campo Product Type (Ball Inches) debe ser un número." data-val-required="El campo Product Type (Ball Inches) es obligatorio." id="SelectedProductId" name="SelectedProductId">
-                                    <option value="">Select Product Type</option>
-                                    <option value="1">3.5"</option>
-                                    <option value="2">5.5"</option>
-                                    <option value="3">7.5"</option>
+                                @Html.LabelFor(model => model.SelectedListStatusId)
+                                
+                                @*@Html.DropDownListFor(model => model.SelectedListStatusId, Model.StatusItems, "Select POC Status")*@
+                                <select id="SelectedListStatusId" name="SelectedListStatusId">
+                                    <option value="">Select POC Status</option>
+                                    <option value="1">Incomplete</option>
+                                    <option value="2">Sent</option>
+                                    <option value="-1">Cancelled</option>
                                 </select>
-                                @*@Html.DropDownListFor(model => model.SelectedIncotermId, Model.IncotermItems, "Select Incoterm")*@
                                 <br />
-                                <label>Test</label>
-                                @*@Html.LabelFor(model => model.SelectedIncotermId)*@
-                                <select data-val="true" data-val-number="El campo Product Type (Ball Inches) debe ser un número." data-val-required="El campo Product Type (Ball Inches) es obligatorio." id="SelectedProductId" name="SelectedProductId">
-                                    <option value="">Select Product Type</option>
-                                    <option value="1">3.5"</option>
-                                    <option value="2">5.5"</option>
-                                    <option value="3">7.5"</option>
+
+                                @Html.LabelFor(model => model.SelectedYearsId)
+                                
+                                @*@Html.DropDownListFor(model => model.SelectedYearsId, Model.YearsItems, "Select Year of Creation")*@
+                                <select id="SelectedYearsId" name="SelectedYearsId">
+                                        <option value="">Select Year of Creation</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                    </select>
+                                <br />
+
+                                @Html.LabelFor(model => model.SelectedMonthsId)
+                                
+                                @*@Html.DropDownListFor(model => model.SelectedMonthsId, Model.MonthItems, "Select Month of Creation")*@
+                                <select id="SelectedMonthsId" name="SelectedMonthsId">
+                                    <option value="">Select Month of Creation</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
                                 </select>
-                                @*@Html.DropDownListFor(model => model.SelectedIncotermId, Model.IncotermItems, "Select Incoterm")*@
+                                <br />
+                                
+                                
                             </div>
                         </div>
                         <a class="filter btn" style="color:#414959">>>Advanced filters</a>
@@ -100,12 +126,26 @@
             e.preventDefault();
 
             var queryText = $('#queryText').val();
-            var searchByPOC = $('#pocNumber').is(':checked'); //add selector for radio checkbox poc number
+            var searchByPOC = $('#POCID').is(':checked'); //add selector for radio checkbox poc number
+            
+            var productVal = 0;
+            if ($('#SelectedProductId option:selected').val() != "") {
+               productVal = $('#SelectedProductId option:selected').val();
+            }
+            var statusVal = 0;
+            if ($('#SelectedListStatusId option:selected').val() != "") {
+                statusVal = $('#SelectedListStatusId option:selected').val();
+            }
 
-            var productVal = $('#dropdownProduct option:selected').val();
-            var statusVal = $('#dropdownStatus option:selected').val();
-            var monthVal = $('#dropdownMonth option:selected').val();
-            var yearVal = $('#dropdownYear option:selected').val();
+            var yearVal = 0;
+            if ($('#SelectedYearsId option:selected').val() != "") {
+                yearVal = $('#SelectedYearsId option:selected').val();
+            }
+
+            var monthVal = 0;
+            if ($('#SelectedMonthsId option:selected').val() != "") {
+                monthVal = $('#SelectedMonthsId option:selected').val();
+            }
 
             var queryObject = {
                 'query': queryText,
@@ -113,7 +153,7 @@
                 'productType': productVal,
                 'statusPOC': statusVal,
                 'month': monthVal,
-                'year' : yearVal
+                'year': yearVal
             };
 
             var jsonQuery = JSON.stringify(queryObject);
