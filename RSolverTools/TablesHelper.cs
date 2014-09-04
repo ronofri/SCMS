@@ -12,8 +12,11 @@ namespace SCMS.RSolverTools
 
         public Dictionary<string, bool> Flags { get; set; }
 
+        public Dictionary<string, string> Title { get; set; }
+
         public TablesHelper(List<POC> source, string user)
         {
+            Title = new Dictionary<string, string>();
             if (user == "All")
             {
                 ListAll(source);
@@ -43,10 +46,13 @@ namespace SCMS.RSolverTools
             POCs = new Dictionary<string, List<POC>>();
             List<POC> incomplete = new List<POC>();
             POCs.Add("1", incomplete);
+            Title.Add("1", "Recent Incompleted Customer PO's");
             List<POC> sent = new List<POC>();
             POCs.Add("2", sent);
+            Title.Add("2", "Recent Sent Customer PO's");
             List<POC> cancelled = new List<POC>();
             POCs.Add("100", cancelled);
+            Title.Add("100", "Recent Cancelled Customer PO's");
         }
 
         public void ListFilter(List<POC> source)
@@ -87,6 +93,7 @@ namespace SCMS.RSolverTools
             List<POC> all = source;
 
             POCs.Add("0", all);
+            Title.Add("0", "Result Customer PO's");
         }
 
         public void FlagFilter(string query)
