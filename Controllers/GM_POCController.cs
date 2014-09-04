@@ -439,16 +439,25 @@ namespace SCMS.Controllers
             }
 
             var jsonObject = new {success = success, tonsLeft = tonsLeft - shipment.Amount, errorText = error };
-            //List<int> result = new List<int>();
-            //result.Add(success);
-            //result.Add(tonsLeft - shipment.Amount);
-
-            //return new JsonResult
-            //{
-            //    Data = result.ToArray(),
-            //    JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            //};
             return Json(jsonObject, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult POCDelete(int POCID)
+        {
+            POC poc = db.POC.Find(POCID);
+            poc.Status = -1;
+            //foreach (PurchaseOrderME p in purchaseordercustomer.PurchaseOrders)
+            //{
+                //p.Status = -1;
+                //foreach (BL b in p.BLs)
+                //{
+                //    b.Status = -1;
+                //}
+            //}
+            db.Entry(poc).State = EntityState.Modified;
+            db.SaveChanges();
+            //return RedirectToAction("Index")
+            return null;
         }
 
         protected override void Dispose(bool disposing)

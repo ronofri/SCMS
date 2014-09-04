@@ -10,8 +10,33 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary">Yes</button>
+                <button type="button" class="btn btn-primary delete" data-dismiss="modal">Yes</button>
+                @Html.ActionLink("BackHome", "Inbox", "GM_Inbox", new { id="Redirect", @class = "hidden"});
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".delete").on("click", function () {
+            var id = $(this).val();
+            $.ajax(
+            {
+                url: '/GM_POC/POCDelete',
+                type: 'POST',
+                dataType: 'json',
+                data: {POCID: id},
+                success: function (result) {
+                    //$("#Redirect").trigger("click");
+                    //alert("??");
+                    window.location ='/GM_Inbox/';
+                },
+                error: function () { alert("error"); } //should change div element html and ask the user to refresh
+            });
+        });
+    });
+    $(document).on("click", ".modal-delete", function () {
+        var POCid = $(this).data("id");
+        $(".delete").val(POCid);
+    });
+</script>

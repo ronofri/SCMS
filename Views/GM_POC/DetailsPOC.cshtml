@@ -15,7 +15,7 @@
                     <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = Model.Schedule.POC.POCID })</li>
                     <li role="presentation" class="divider"></li>
                     @*@Html.ActionLink("Delete", "Delete", new { id = Model.Schedule.POC.POCID })*@
-                    <li role="presentation"><a data-toggle="modal" data-target="#deleteModal" id=@Model.Schedule.POC.POCID>Delete</a></li>
+                    <li role="presentation"><a class="modal-delete" data-toggle="modal" data-target="#deleteModal" data-id=@Model.Schedule.POC.POCID>Delete</a></li>
                 </ul>
             </div>
             <a class="block-heading">POC Number: @Html.DisplayFor(model => Model.Schedule.POC.POCID)</a>
