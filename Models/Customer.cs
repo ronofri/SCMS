@@ -18,6 +18,6 @@ namespace SCMS.Models
 
         public string ContactInfo { get; set; }
 
-        public DestinationPort defaultPort { get; set; }
+        public bool isEnterprise { get; set; }
     }
 }

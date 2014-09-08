@@ -11,9 +11,7 @@ namespace SCMS.Models
     {
         public int BLID { get; set; }
 
-        public Shipment Shipment { get; set; }
-
-        public int Amount { get; set; }
+        public virtual ICollection<Shipment> Shipments { get; set; }
 
         public int Status { get; set; }
 
@@ -22,6 +20,23 @@ namespace SCMS.Models
         public virtual ICollection<Container> Containers { get; set; }
 
         public virtual ICollection<Document> Documents { get; set; }
+
+        public int Amount
+        {
+            get
+            {
+                int total = 0;
+                if (Shipments != null)
+                {
+                    foreach (Shipment shipment in Shipments)
+                    {
+                        total += shipment.Amount;
+                    }
+                }
+                return total;
+            }
+        }
+
 
         public string StatusString
         {

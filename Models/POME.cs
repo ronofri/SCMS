@@ -12,13 +12,15 @@ namespace SCMS.Models
 
         public POC POC { get; set; }
 
-        public int Amount { get; set; }        
+        public int Amount { get; set; }
+
+        public int PricePerTon { get; set; }        
 
         public int Status { get; set; }
 
         public string SpecialRequirements { get; set; }
 
-        public virtual ICollection<Shipment> Shipments { get; set; }
+        //public virtual ICollection<Shipment> Shipments { get; set; }
 
         public string StatusString
         {

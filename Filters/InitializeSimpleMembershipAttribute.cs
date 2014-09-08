@@ -38,7 +38,7 @@ namespace SCMS.Filters
 							((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
 						}
 					}
-
+                    //CAUTION: Posible error
                     WebSecurity.InitializeDatabaseConnection("SCMS.DAL.DataBaseContext", "UserProfile", "UserId", "UserName", autoCreateTables: false);
 				}
 				catch (Exception ex)

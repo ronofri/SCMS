@@ -9,9 +9,8 @@ namespace SCMS.Models
 
         public int POCID { get; set; }
 
+        //Only 3 bigs
         public virtual Customer Customer { get; set; }
-
-        public virtual DestinationPort DestinationPort { get; set; }
 
         public int AmountTotal { get; set; }
 
@@ -19,6 +18,7 @@ namespace SCMS.Models
 
         public virtual Product Product { get; set; }
 
+        //Only FCA, FOB, EXW
         public virtual Incoterm CustomerIncoterm { get; set; }
 
         public int Status { get; set; }

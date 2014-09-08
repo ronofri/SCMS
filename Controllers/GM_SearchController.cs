@@ -64,7 +64,7 @@ namespace SCMS.Controllers
         public List<POC> searchAll(QueryObject query)
         {
 
-            var allPOC = db.POC.Include(x => x.Product).Include(x => x.Customer).Include(x => x.DestinationPort);
+            var allPOC = db.POC.Include(x => x.Product).Include(x => x.Customer);
 
             return allPOC.ToList<POC>();
         }  
@@ -72,7 +72,7 @@ namespace SCMS.Controllers
         public List<POC> search(QueryObject query) 
         {
 
-            var allPOC = db.POC.Include(x => x.Product).Include(x => x.Customer).Include(x => x.DestinationPort);
+            var allPOC = db.POC.Include(x => x.Product).Include(x => x.Customer);
             query.query = query.query.ToLower();
             if (query.searchByPOC)
             {
@@ -89,9 +89,8 @@ namespace SCMS.Controllers
             foreach (POC POC in POCs)
             {
                 bool customerContains = false;
-                bool portContains = false;
 
-                if (POC.Customer == null && POC.DestinationPort == null) 
+                if (POC.Customer == null) 
                 {
                      continue;  
                 }
@@ -102,13 +101,7 @@ namespace SCMS.Controllers
                         customerContains = true;
                 }
 
-                if(POC.DestinationPort != null)
-                {
-                    if (POC.DestinationPort.Name.ToLower().Contains(query.query) || POC.DestinationPort.Address.ToLower().Contains(query.query))
-                        portContains = true;
-                }
-
-                if (customerContains || portContains)
+                if (customerContains)
                 {
                     bool addPOC = true;
 

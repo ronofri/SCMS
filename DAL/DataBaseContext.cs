@@ -23,7 +23,7 @@ namespace SCMS.DAL
         //USER MANAGEMENT SYSTEM
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<Membership> Membership { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        public DbSet<Role> Role { get; set; }
         public DbSet<OAuthMembership> OAuthMembership { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

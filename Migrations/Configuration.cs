@@ -72,21 +72,6 @@
             products.ForEach(b => context.Product.AddOrUpdate(product => product.Name, b));
             context.SaveChanges();
 
-            //var shipments = new List<Shipment>
-            //{
-            //    new Shipment { ShipmentNumber = 1, Amount = 156, EstimatedTimeDeparture = new DateTime(2014, 8, 29), EstimatedTimeArrival = new DateTime(2014, 9, 15) },
-            //    new Shipment { ShipmentNumber = 2, Amount = 312, EstimatedTimeDeparture = new DateTime(2014, 9, 20), EstimatedTimeArrival = new DateTime(2014, 10, 18) },
-            //    new Shipment { ShipmentNumber = 3, Amount = 390, EstimatedTimeDeparture = new DateTime(2014, 10, 10), EstimatedTimeArrival = new DateTime(2014, 10, 30) },
-            //    new Shipment { ShipmentNumber = 4, Amount = 208, EstimatedTimeDeparture = new DateTime(2014, 11, 1), EstimatedTimeArrival = new DateTime(2014, 11, 25) },
-            //    new Shipment { ShipmentNumber = 5, Amount = 156, EstimatedTimeDeparture = new DateTime(2014, 11, 3), EstimatedTimeArrival = new DateTime(2014, 11, 30) },
-            //    new Shipment { ShipmentNumber = 6, Amount = 312, EstimatedTimeDeparture = new DateTime(2014, 11, 20), EstimatedTimeArrival = new DateTime(2014, 12, 5) },
-            //    new Shipment { ShipmentNumber = 7, Amount = 156, EstimatedTimeDeparture = new DateTime(2014, 12, 1), EstimatedTimeArrival = new DateTime(2014, 12, 22) },
-            //    new Shipment { ShipmentNumber = 8, Amount = 208, EstimatedTimeDeparture = new DateTime(2014, 12, 15), EstimatedTimeArrival = new DateTime(2015, 1, 10) },
-            //    new Shipment { ShipmentNumber = 9, Amount = 260, EstimatedTimeDeparture = new DateTime(2015, 1, 10), EstimatedTimeArrival = new DateTime(2015, 1, 20) }
-            //};
-            //shipments.ForEach(s => context.Shipment.AddOrUpdate(shipment => shipment.ShipmentNumber, s));
-            //context.SaveChanges();
-
             //var users = new List<UserProfile>
             //{
             //    new UserProfile { UserName = "jselman" },
@@ -97,16 +82,16 @@
             //users.ForEach(u => context.UserProfile.AddOrUpdate(up => up.UserName, u));
             //context.SaveChanges();
 
-            //var memberships = new List<Membership>
-            //{
-            //    new Membership { Password="jazmin"},
-            //    new Membership { Password = "javier" },
-            //    new Membership { Password="felipe"},
-            //    new Membership { Password="gm"}
-            //};
+            var roles = new List<Role>
+            {
+                new Role { RoleName="GM"},
+                new Role { RoleName= "SCM" },
+                new Role { RoleName="LongTen"},
+                new Role { RoleName="Admin"}
+            };
 
-            //memberships.ForEach(m => context.Membership.AddOrUpdate(m));
-            //context.SaveChanges();
+            roles.ForEach(m => context.Role.AddOrUpdate(m));
+            context.SaveChanges();
         }
     }
 }

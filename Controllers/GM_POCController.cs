@@ -106,7 +106,7 @@ namespace SCMS.Controllers
 
         public ActionResult EditPOC(int id = 0)
         {
-            var purchaseordercustomerFull = db.POC.Include(x => x.Product).Include(x => x.Customer).Include(x => x.DestinationPort);
+            var purchaseordercustomerFull = db.POC.Include(x => x.Product).Include(x => x.Customer);
             var result = purchaseordercustomerFull.Where(p => p.POCID == id);
             List<POC> purchaseordercustomerList = result.ToList<POC>();
 
@@ -131,11 +131,6 @@ namespace SCMS.Controllers
             if (POC.Customer != null) 
             {
                 VM.CustomerProperty = POC.Customer.CustomerProperty;
-            }
-
-            if (POC.DestinationPort != null)
-            {
-                VM.PortProperty = POC.DestinationPort.PortProperty;
             }
 
             return View(VM);
@@ -180,8 +175,6 @@ namespace SCMS.Controllers
 
             POC.Customer = VM.POC.Customer;
             POC.CustomerIncoterm = VM.POC.CustomerIncoterm;
-
-            POC.DestinationPort = VM.POC.DestinationPort;
 
             POC.Product = VM.POC.Product;
 
@@ -281,23 +274,6 @@ namespace SCMS.Controllers
                 }
             }
 
-            List<DestinationPort> destinations = db.DestinationPort.ToList<DestinationPort>();
-            DestinationPort finalDestination = new DestinationPort();
-
-            if (VM.PortProperty != null)
-            {
-                string queryLower = VM.PortProperty.ToLower();
-
-                foreach (DestinationPort d in destinations)
-                {
-                    bool cond = (d.PortProperty).ToLower().Equals(queryLower);
-                    if (cond)
-                    {
-                        finalDestination = d;
-                    }
-                }
-            }
-
             if (finalCustomer.Name != null)
             {
                 VM.POC.Customer = finalCustomer;
@@ -306,15 +282,6 @@ namespace SCMS.Controllers
             else
             {
                 VM.Alerts.Add(new AlertItem("Selected Customer is not valid."));
-            }
-
-            if (finalDestination.Name != null)
-            {
-                VM.POC.DestinationPort = finalDestination;
-            }
-            else if (postType)
-            {
-                VM.Alerts.Add(new AlertItem("Selected Port is not valid."));
             }
 
 

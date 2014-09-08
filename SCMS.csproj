@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201409072250581_UserSystemAdded.Designer.cs">
       <DependentUpon>201409072250581_UserSystemAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409081526564_ModelUpdate2.cs" />
+    <Compile Include="Migrations\201409081526564_ModelUpdate2.Designer.cs">
+      <DependentUpon>201409081526564_ModelUpdate2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Alloy.cs" />
@@ -198,8 +202,6 @@
     <Compile Include="Models\DestinationPort.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Incoterm.cs" />
-    <Compile Include="Models\NewPOME.cs" />
-    <Compile Include="Models\NewPOC.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\POC.cs" />
     <Compile Include="Models\POME.cs" />
@@ -322,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409072250581_UserSystemAdded.resx">
       <DependentUpon>201409072250581_UserSystemAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409081526564_ModelUpdate2.resx">
+      <DependentUpon>201409081526564_ModelUpdate2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

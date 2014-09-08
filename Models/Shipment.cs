@@ -12,7 +12,7 @@ namespace SCMS.Models
 
         public Schedule Schedule { get; set; }
 
-        public POME POME { get; set; }
+        public DestinationPort DestinationPort { get; set; }
 
         public int Amount { get; set; }
 
@@ -26,21 +26,16 @@ namespace SCMS.Models
 
         public int ShipmentNumber { get; set; }
 
-        public virtual ICollection<BL> BLs { get; set; }
+        public BL BL { get; set; }
 
-        public int TotalBL
+        public int Status { get; set; }
+
+        public string StatusString
         {
             get
             {
-                int BLcount = 0;
-                if (BLs == null)
-                    return BLcount;
-                foreach(BL b in BLs.ToList<BL>()){
-                    if (b.Status != -1)
-                        BLcount++;
-                }
-                return BLcount;
+                return "";
             }
-        }        
+        }
     }
 }
