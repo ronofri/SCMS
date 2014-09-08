@@ -20,12 +20,12 @@ namespace SCMS.Controllers
         {
             if (User.IsInRole("GM")) 
             {
-                return RedirectToAction("GM_Inbox", "Inbox");
+                return RedirectToAction("Inbox", "GM_Inbox");
             }
 
             if (User.IsInRole("Admin"))
             {
-                return RedirectToAction("Account", "Register");
+                return RedirectToAction("Solver", "R");
             }
 
             return View();

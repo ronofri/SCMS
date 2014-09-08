@@ -39,7 +39,8 @@ namespace SimpleMembershipTables.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                //return RedirectToLocal(returnUrl);
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
