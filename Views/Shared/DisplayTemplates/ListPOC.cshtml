@@ -5,7 +5,7 @@
     if (pair.Value.Count() > 0)
     {
         <div class="block">
-            <a class="block-heading accordion btn btn-xs">@Model.tablesHelper.Title[pair.Key.ToString()]</a>
+            <a class="block-heading btn btn-xs accordion">@Model.tablesHelper.Title[pair.Key.ToString()]</a>
             <table class="table collapse in">
                 <tr>
                     @if (Model.tablesHelper.Flags["PO Number"])
