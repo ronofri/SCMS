@@ -47,6 +47,9 @@
       <HintPath>..\packages\dotless.1.4.1.0\lib\dotless.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mvc.Mailer">
+      <HintPath>packages\MvcMailer3.3.1\lib\40\Mvc.Mailer.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -185,6 +188,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mailers\IUserMailer.cs" />
+    <Compile Include="Mailers\UserMailer.cs" />
     <Compile Include="Migrations\201408282159463_InitialMigration.cs" />
     <Compile Include="Migrations\201408282159463_InitialMigration.Designer.cs">
       <DependentUpon>201408282159463_InitialMigration.cs</DependentUpon>
@@ -333,6 +338,8 @@
     <Content Include="Views\SCM_Search\AjaxSearchPOC.cshtml" />
     <Content Include="Views\SCM_Search\SearchPOC.cshtml" />
     <Content Include="Views\Shared\_LayoutSCM.cshtml" />
+    <Content Include="Views\UserMailer\_Layout.cshtml" />
+    <Content Include="Views\UserMailer\Notification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
