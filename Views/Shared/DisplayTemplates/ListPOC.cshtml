@@ -32,12 +32,6 @@
                             Customer Address
                         </th>
                     }
-                    @if (Model.tablesHelper.Flags["Destination Port"])
-                    {
-                        <th>
-                            Destination Port
-                        </th>
-                    }
                     @if (Model.tablesHelper.Flags["Incoterm"])
                     {
                         <th>
@@ -96,12 +90,6 @@
                         {
                             <td>
                                 @Html.DisplayFor(modelItem => item.Customer.Address)
-                            </td>
-                        }
-                        @if (Model.tablesHelper.Flags["Destination Port"])
-                        {
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DestinationPort.Name)
                             </td>
                         }
                         @if (Model.tablesHelper.Flags["Incoterm"])

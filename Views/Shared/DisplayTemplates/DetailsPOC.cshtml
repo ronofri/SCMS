@@ -12,13 +12,18 @@
                 <label>Customer Address: </label>
                 @Html.DisplayFor(model => Model.Schedule.POC.Customer.Address)
             </div>
-            <div class="form-group">
-                <label>Destination Port: </label>
-                @Html.DisplayFor(model => Model.Schedule.POC.DestinationPort.PortProperty)
-            </div>
+            
             <div class="form-group">
                 <label>Incoterm:</label>
                 @Html.DisplayFor(model => Model.Schedule.POC.CustomerIncoterm.Name)
+            </div>
+            <div class="table-bordered" style="margin: 0 15px 15px 0">
+                <div class="form-group">
+                    <label>Comments: </label>
+                </div>
+                <div class="form-group">
+                    @Html.DisplayFor(model => model.Schedule.POC.Comments)
+                </div>
             </div>
         </div>
         <div class="span6 ">
@@ -33,15 +38,7 @@
             <div class="form-group">
                 <label>Total Amount:</label>
                 @Html.DisplayFor(model => model.Schedule.POC.AmountTotal)
-            </div>
-            <div class="table-bordered" style="margin: 0 15px 15px 0">
-                <div class="form-group">
-                    <label>Comments: </label>
-                </div>
-                <div class="form-group">
-                    @Html.DisplayFor(model => model.Schedule.POC.Comments)
-                </div>
-            </div>
+            </div>            
         </div>
     </div>
 </div>
