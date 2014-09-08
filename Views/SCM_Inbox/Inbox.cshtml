@@ -1,11 +1,12 @@
-﻿@model SCMS.ViewModels.GM_Inbox.ListPOCViewModel
+﻿@model SCMS.ViewModels.SCM_Inbox.ListPOCViewModel
 
 @{
     ViewBag.Title = "Inbox";
+    Layout = "~/Views/Shared/_LayoutSCM.cshtml";
 }
 
 <div class="header">
-    <h1 class="page-title">Inbox (GM)</h1>
+    <h1 class="page-title">Inbox (SCM)</h1>
 </div>
 @if (Model.tablesHelper.Count != 0)
 {

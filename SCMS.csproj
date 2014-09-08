@@ -175,6 +175,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SCM_SearchController.cs" />
+    <Compile Include="Controllers\SCM_POCController.cs" />
+    <Compile Include="Controllers\SCM_InboxController.cs" />
     <Compile Include="Controllers\GM_InboxController.cs" />
     <Compile Include="Controllers\GM_POCController.cs" />
     <Compile Include="Controllers\GM_ScheduleController.cs" />
@@ -216,10 +219,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RSolverTools\AlertItem.cs" />
     <Compile Include="RSolverTools\GanttSource.cs" />
+    <Compile Include="RSolverTools\QueryObject.cs" />
     <Compile Include="RSolverTools\TablesHelper.cs" />
+    <Compile Include="ViewModels\SCM_Inbox\ListPOCViewModel.cs" />
     <Compile Include="ViewModels\GM_Inbox\ListPOCViewModel.cs" />
+    <Compile Include="ViewModels\SCM_POC\CreateEditPOCViewModel.cs" />
+    <Compile Include="ViewModels\SCM_POC\DetailsPOCViewModel.cs" />
     <Compile Include="ViewModels\GM_POC\DetailsPOCViewModel.cs" />
     <Compile Include="ViewModels\GM_POC\CreateEditPOCViewModel.cs" />
+    <Compile Include="ViewModels\SCM_Search\SearchPOCViewModel.cs" />
     <Compile Include="ViewModels\GM_Search\SearchPOCViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +331,13 @@
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAccount.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\SCM_Inbox\Inbox.cshtml" />
+    <Content Include="Views\SCM_POC\CreatePOC.cshtml" />
+    <Content Include="Views\SCM_POC\DetailsPOC.cshtml" />
+    <Content Include="Views\SCM_POC\EditPOC.cshtml" />
+    <Content Include="Views\SCM_Search\AjaxSearchPOC.cshtml" />
+    <Content Include="Views\SCM_Search\SearchPOC.cshtml" />
+    <Content Include="Views\Shared\_LayoutSCM.cshtml" />
     <Content Include="Views\UserMailer\_Layout.cshtml" />
     <Content Include="Views\UserMailer\Notification.cshtml" />
   </ItemGroup>

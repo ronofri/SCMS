@@ -7,34 +7,34 @@ using SCMS.DAL;
 
 using System.Data;
 using System.Data.Entity;
-using SCMS.ViewModels.GM_Inbox;
+using SCMS.ViewModels.SCM_Inbox;
 using SCMS.Models;
 using System.Web.Script.Serialization;
 using SCMS.RSolverTools;
 
 namespace SCMS.Controllers
 {
-    public class GM_SearchController : Controller
+    public class SCM_SearchController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
         //
-        // GET: /GM_Search/
+        // GET: /SCM_Search/
 
         public ActionResult SearchPOC()
         {
             QueryObject all = new QueryObject();
-            ListPOCViewModel VM = new ListPOCViewModel(searchAll(all), "GM_Search");
+            ListPOCViewModel VM = new ListPOCViewModel(searchAll(all), "All");
 
             List<Product> products = db.Product.ToList();
 
-            List<string> listStatus = new List<string> {"Incomplete","Sent","Cancelled"};
+            List<string> listStatus = new List<string> { "Incomplete", "Sent", "Cancelled" };
 
             List<string> months = new List<string> { "January", "February", "March",
                                                      "April", "May", "June", "July", 
                                                      "August", "September", "October", "November", "December" };
             List<int> years = new List<int>();
 
-            for (int i = 1969; i < 2031; i++) 
+            for (int i = 1969; i < 2031; i++)
             {
                 years.Add(i);
             }
@@ -68,9 +68,9 @@ namespace SCMS.Controllers
             var allPOC = db.POC.Include(x => x.Product).Include(x => x.Customer);
 
             return allPOC.ToList<POC>();
-        }  
+        }
 
-        public List<POC> search(QueryObject query) 
+        public List<POC> search(QueryObject query)
         {
 
             var allPOC = db.POC.Include(x => x.Product).Include(x => x.Customer);
@@ -91,12 +91,12 @@ namespace SCMS.Controllers
             {
                 bool customerContains = false;
 
-                if (POC.Customer == null) 
+                if (POC.Customer == null)
                 {
-                     continue;  
+                    continue;
                 }
 
-                if(POC.Customer != null)
+                if (POC.Customer != null)
                 {
                     if (POC.Customer.Name.ToLower().Contains(query.query) || POC.Customer.Address.ToLower().Contains(query.query))
                         customerContains = true;
@@ -106,7 +106,7 @@ namespace SCMS.Controllers
                 {
                     bool addPOC = true;
 
-                    if(query.productType != 0)
+                    if (query.productType != 0)
                     {
                         if (POC.Product != null)
                         {
@@ -116,7 +116,7 @@ namespace SCMS.Controllers
                             }
                         }
 
-                        else 
+                        else
                         {
                             addPOC = false;
                         }
@@ -136,7 +136,7 @@ namespace SCMS.Controllers
                         int day = 1;
                         int year = DateTime.Now.Year;
 
-                        if(query.month != 0)
+                        if (query.month != 0)
                         {
                             month = query.month;
                         }
@@ -147,14 +147,14 @@ namespace SCMS.Controllers
                         }
 
                         DateTime filterDate = new DateTime(year, month, day);
-                        
+
                         if (POC.CreationDate < filterDate)
                         {
                             addPOC = false;
                         }
                     }
 
-                    if (addPOC) 
+                    if (addPOC)
                     {
                         result.Add(POC);
                     }
@@ -165,5 +165,5 @@ namespace SCMS.Controllers
             return result;
         }
 
-    }    
+    }
 }

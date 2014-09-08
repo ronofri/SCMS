@@ -1,0 +1,17 @@
+﻿@model SCMS.ViewModels.SCM_POC.CreateEditPOCViewModel
+
+@{
+    ViewBag.Title = "EditPOC";
+    Layout = "~/Views/Shared/_LayoutSCM.cshtml";
+}
+
+@foreach (SCMS.RSolverTools.AlertItem alert in Model.Alerts) 
+{
+    @Html.DisplayFor(model => alert)
+
+}
+
+    @Html.EditorFor(model => model, "CreateEditPOC")
+
+
+<script src="~/Scripts/CreateEditPOC.js" type="text/javascript"></script>

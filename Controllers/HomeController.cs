@@ -23,6 +23,11 @@ namespace SCMS.Controllers
                 return RedirectToAction("Inbox", "GM_Inbox");
             }
 
+            if (User.IsInRole("SCM"))
+            {
+                return RedirectToAction("Inbox", "SCM_Inbox");
+            }
+
             if (User.IsInRole("Admin"))
             {
                 return RedirectToAction("Solver", "R");

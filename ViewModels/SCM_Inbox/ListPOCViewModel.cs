@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using SCMS.RSolverTools;
 
-namespace SCMS.ViewModels.GM_Inbox
+namespace SCMS.ViewModels.SCM_Inbox
 {
     public class ListPOCViewModel
     {
@@ -17,6 +17,11 @@ namespace SCMS.ViewModels.GM_Inbox
         public ListPOCViewModel(List<POC> source, string user)
         {
             tablesHelper = new TablesHelper(source, user);
+        }
+
+        public ListPOCViewModel(List<POC> source_poc, List<POME> source_pome, List<BL> source_bl, string user)
+        {
+            tablesHelper = new TablesHelper(source_poc, source_pome, source_bl, user);
         }
 
         public List<Product> Products { get; set; }

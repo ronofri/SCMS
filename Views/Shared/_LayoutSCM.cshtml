@@ -32,19 +32,7 @@
 <body>
     <div class="navbar">
         <div class="navbar-inner">
-            <a class="brand" href="/GM_Inbox"><img src="~/content/images/logo_elecmetal.png" alt="Elecmetal" /></a>
-                <ul class="nav pull-right">
-                    <li>
-                        Hello, @User.Identity.Name
-                    </li>
-                    <li>
-                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:document.getElementById('logoutForm').submit()">Log out</a>
-                        }
-                    </li>
-                </ul>
+            <a class="brand" href="/SCM_Inbox"><img src="~/content/images/logo_elecmetal.png" alt="Elecmetal" /></a>
         </div>
     </div>
 
@@ -52,9 +40,9 @@
             <div class="span3">
             </div>
             <div class="sidebar-nav">
-                    @Html.ActionLink("Inbox", "Inbox", "GM_Inbox", null, new { @class = "nav-header" })
-                    @Html.ActionLink("Create New PO", "CreatePOC", "GM_POC", null, new { @class = "nav-header" })
-                    @Html.ActionLink("Search Customer PO's", "SearchPOC", "GM_Search", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Inbox", "Inbox", "SCM_Inbox", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Create New POME", "CreatePOC", "SCM_POC", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Search ME PO's", "SearchPOC", "SCM_Search", null, new { @class = "nav-header" })
             </div>
 
             @RenderSection("featured", required: false)
