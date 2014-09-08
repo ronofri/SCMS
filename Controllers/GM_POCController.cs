@@ -12,6 +12,7 @@ using SCMS.RSolverTools;
 using System.Data;
 using System.Data.Entity;
 using System.Web.Script.Serialization;
+using SCMS.Mailers;
 
 
 namespace SCMS.Controllers
@@ -423,6 +424,17 @@ namespace SCMS.Controllers
             //}
             db.Entry(poc).State = EntityState.Modified;
             db.SaveChanges();
+
+            try 
+            {
+                IUserMailer mailer = new UserMailer(); //using SCMS.Mailers; <--
+                mailer.Notification("notify.scm@gmail.com").Send();
+            }
+            catch 
+            {
+                //Do something to signal that the notification could not be sent
+            }
+
             //return RedirectToAction("Index")
             return null;
         }

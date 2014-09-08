@@ -33,6 +33,18 @@
     <div class="navbar">
         <div class="navbar-inner">
             <a class="brand" href="/POC"><img src="~/content/images/logo_elecmetal.png" alt="Elecmetal" /></a>
+                <ul class="nav pull-right">
+                    <li>
+                        Hello, @User.Identity.Name
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()">Log out</a>
+                        }
+                    </li>
+                </ul>
         </div>
     </div>
 

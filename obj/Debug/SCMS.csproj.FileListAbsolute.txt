@@ -200,3 +200,5 @@ C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.User
 C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.UserSystemAdded.resources
 C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.ModelUpdate2.resources
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.ModelUpdate2.resources
+C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csprojResolveAssemblyReference.cache
+C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Mvc.Mailer.dll
