@@ -14,7 +14,7 @@ namespace SCMS.Controllers
         private DataBaseContext db = new DataBaseContext();
         //
         // GET: /GM_Inbox/
-
+        [Authorize(Roles="GM")]
         public ActionResult Inbox()
         {
             List<POC> POCs = db.POC.ToList<POC>();

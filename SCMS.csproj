@@ -166,15 +166,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GM_InboxController.cs" />
     <Compile Include="Controllers\GM_POCController.cs" />
     <Compile Include="Controllers\GM_ScheduleController.cs" />
     <Compile Include="Controllers\GM_SearchController.cs" />
     <Compile Include="DAL\DataBaseContext.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,7 +185,12 @@
     <Compile Include="Migrations\201408282159463_InitialMigration.Designer.cs">
       <DependentUpon>201408282159463_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409072250581_UserSystemAdded.cs" />
+    <Compile Include="Migrations\201409072250581_UserSystemAdded.Designer.cs">
+      <DependentUpon>201409072250581_UserSystemAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Alloy.cs" />
     <Compile Include="Models\BL.cs" />
     <Compile Include="Models\Container.cs" />
@@ -293,11 +301,25 @@
     <Content Include="Views\GM_POC\DetailsPOC.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DetailsPOC.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DeleteConfirmation.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
       <DependentUpon>201408282159463_InitialMigration.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409072250581_UserSystemAdded.resx">
+      <DependentUpon>201409072250581_UserSystemAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

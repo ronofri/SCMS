@@ -14,9 +14,11 @@ namespace SCMS.RSolverTools
 
         public Dictionary<string, string> Title { get; set; }
 
+        public int Count { get; set; }
         public TablesHelper(List<POC> source, string user)
         {
             Title = new Dictionary<string, string>();
+            Count = source.Count;
             if (user == "All")
             {
                 ListAll(source);
@@ -46,7 +48,7 @@ namespace SCMS.RSolverTools
             POCs = new Dictionary<string, List<POC>>();
             List<POC> incomplete = new List<POC>();
             POCs.Add("1", incomplete);
-            Title.Add("1", "Recent Incompleted Customer PO's");
+            Title.Add("1", "Recent Incomplete Customer PO's");
             List<POC> sent = new List<POC>();
             POCs.Add("2", sent);
             Title.Add("2", "Recent Sent Customer PO's");

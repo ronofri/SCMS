@@ -86,6 +86,27 @@
             //};
             //shipments.ForEach(s => context.Shipment.AddOrUpdate(shipment => shipment.ShipmentNumber, s));
             //context.SaveChanges();
+
+            //var users = new List<UserProfile>
+            //{
+            //    new UserProfile { UserName = "jselman" },
+            //    new UserProfile { UserName = "jgonzalez" },
+            //    new UserProfile {  UserName="fmunoz"},
+            //    new UserProfile {  UserName="zhenyuxu"}
+            //};
+            //users.ForEach(u => context.UserProfile.AddOrUpdate(up => up.UserName, u));
+            //context.SaveChanges();
+
+            //var memberships = new List<Membership>
+            //{
+            //    new Membership { Password="jazmin"},
+            //    new Membership { Password = "javier" },
+            //    new Membership { Password="felipe"},
+            //    new Membership { Password="gm"}
+            //};
+
+            //memberships.ForEach(m => context.Membership.AddOrUpdate(m));
+            //context.SaveChanges();
         }
     }
 }

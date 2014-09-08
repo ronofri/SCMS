@@ -11,6 +11,7 @@ namespace SCMS.ViewModels.GM_Inbox
 {
     public class ListPOCViewModel
     {
+        public AlertItem alert = new AlertItem("No Recent Customer PO's to show", "Warning");
         public TablesHelper tablesHelper { get; set; }
 
         public ListPOCViewModel(List<POC> source)

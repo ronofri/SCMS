@@ -7,6 +7,8 @@
 <div class="header">
     <h1 class="page-title">Inbox (GM)</h1>
 </div>
+@if (Model.tablesHelper.Count != 0)
+{
 
 <div class="container-fluid">
     <div class="row-fluid">
@@ -14,3 +16,8 @@
     </div>
 </div>
 
+}
+else {
+    @Html.DisplayFor(model => Model.alert)
+    
+}
