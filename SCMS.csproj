@@ -176,6 +176,7 @@
     <Compile Include="Controllers\GM_POCController.cs" />
     <Compile Include="Controllers\GM_ScheduleController.cs" />
     <Compile Include="Controllers\GM_SearchController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\DataBaseContext.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -316,6 +317,7 @@
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAccount.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
