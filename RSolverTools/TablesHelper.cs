@@ -43,7 +43,7 @@ namespace SCMS.RSolverTools
         {
             initialize(user);
             initializeFlags();
-            //Count = source.Count;
+            Count = source_poc.Count;
             if (user == "SCM_Search")
             {
                 ListAll(source_poc);

@@ -32,7 +32,21 @@
 <body>
     <div class="navbar">
         <div class="navbar-inner">
-            <a class="brand" href="/SCM_Inbox"><img src="~/content/images/logo_elecmetal.png" alt="Elecmetal" /></a>
+            <a class="brand" href="/SCM_Inbox"><img src="~/content/images/logo_elecmetal.png" alt="Elecmetal" style="margin-top:5px" /></a>
+            <div class="pull-right" style="margin-top:5px; margin-right:10px">
+
+                <div style="color:white">
+                    <img src="~/Content/images/iconUser.svg" width="15" height="15">
+                    Hello, @User.Identity.Name
+                </div>
+                <div class="pull-right">
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" style="color:white; text-decoration: underline">Log out</a>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 

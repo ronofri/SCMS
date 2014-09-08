@@ -202,3 +202,4 @@ C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.ModelUpdate2.re
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.ModelUpdate2.resources
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csprojResolveAssemblyReference.cache
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Mvc.Mailer.dll
+C:\Users\Cristian\Desktop\RSolver\SCMS\bin\Mvc.Mailer.dll

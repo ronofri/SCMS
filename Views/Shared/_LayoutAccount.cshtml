@@ -10,31 +10,8 @@
     @Scripts.Render("~/bundles/bootstrapjs")
 
     @Styles.Render("~/Content/less")
-    @RenderSection("Scripts", required: false)
-
-    @Scripts.Render("~/bundles/ganttjs")
-    @Styles.Render("~/Content/ganttcss")
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".accordion").on("click", function () {
-                var speed = $(this).parent().children(".table").height() * 1.5;
-                $(this).parent().children(".table").animate({ height: "toggle" }, (speed), function () {
-                    if ($(this).css("display") == "block") {
-                        $(this).css("overflow", "");
-                    }
-
-                });
-            });
-        });
-    </script>
-
 </head>
-<body>
-<div class="container-fluid">
-    <div class="row-fluid">
+<body>    
         @RenderBody()
-    </div>
-</div>
-    @Html.DisplayFor(model => model, "DeleteConfirmation")
 </body>
 </html>
