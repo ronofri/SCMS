@@ -428,7 +428,7 @@ namespace SCMS.Controllers
             try 
             {
                 IUserMailer mailer = new UserMailer(); //using SCMS.Mailers; <--
-                mailer.Notification("notify.scm@gmail.com").Send();
+                mailer.Notification("notify.scm@gmail.com").SendAsync();
             }
             catch 
             {
