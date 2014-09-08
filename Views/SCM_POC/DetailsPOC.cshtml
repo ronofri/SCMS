@@ -1,0 +1,215 @@
+﻿@model SCMS.ViewModels.SCM_POC.DetailsPOCViewModel
+
+@{
+    ViewBag.Title = "Details POC: " + Model.Schedule.POC.POCID;
+    Layout = "~/Views/Shared/_LayoutSCM.cshtml";
+}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="block span8">
+            <div class="dropdown" style="float:right; margin:1px 1px 0 0">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    <img src="~/Content/images/iconCog.png" width="15" height="15">
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = Model.Schedule.POC.POCID })</li>
+                    <li role="presentation" class="divider"></li>
+                    @*@Html.ActionLink("Delete", "Delete", new { id = Model.Schedule.POC.POCID })*@
+                    <li role="presentation"><a class="modal-delete" data-toggle="modal" data-target="#deleteModal" data-id=@Model.Schedule.POC.POCID>Delete</a></li>
+                </ul>
+            </div>
+            <a class="block-heading">POC Number: @Html.DisplayFor(model => Model.Schedule.POC.POCID)</a>
+
+            <br />
+            @Html.DisplayFor(model => model.Schedule, "DetailsPOC")
+        </div>
+    </div>
+</div>
+<div id="Schedule">
+    @if (Model.Schedule.Shipments.Count != 0)
+    {
+        <div class="gantt">
+        </div>
+    }
+    else
+    {
+        <div>
+            @Html.DisplayFor(model => Model.alert)
+            @*<button id="addNew" class="btn btn-primary btn-lg center-block">Add new Shipment</button>*@
+        </div>
+
+    }
+</div>
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="shipment block span8" style="margin-left:20px;padding:20px 20px 0 20px">
+            <div class="span7">
+                <label class="shipmentNumber hidden"></label>
+                <div class="form-group">
+                    <label>Estimated Time of Departure</label>
+                    <input class="datepicker departure" name="EstimatedTimeDeparture" type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Estimated Time of Arrival</label>
+                    <input class="datepicker arrival" name="EstimatedTimeArrival" type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Amount (Tons)</label>
+                    <input class="amount" name="Amount" type="text"/>
+                    <label id="tonsMessage" style="color:red"></label>
+                </div>
+            </div>
+            <div>
+                <br />
+                <br />
+                <input id="saveShipment" class="btn btn-primary btn-lg center-block" type="button" value="Add new Shipment" />
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        function ganttLoader(){
+            
+            var schedule = @Model.Schedule.ScheduleID;
+            $.ajax(
+            {
+                url: '/SCM_POC/ShipmentSource',
+                type: 'GET',
+                dataType: 'json',
+                data: { scheduleID: schedule },
+                success: function (result) {
+                    //alert(JSON.stringify(result));
+                    $(".gantt").gantt({
+                        source: result,
+                        scale: "weeks",
+                        minScale: "days",
+                        maxScale: "months",
+                        navigate: "scroll",
+                        itemsPerPage: 10,
+                        scrollToToday: true
+                    });
+                },
+                error: function () { alert("error"); } //should change div element html and ask the user to refresh
+
+            });
+        }
+
+        ganttLoader();
+
+        $('.amount').val(@Model.Schedule.TonsLeft);
+
+
+        $('#saveShipment').on('click', function (e) {
+
+            e.preventDefault();
+
+            $('#tonsMessage').val("");
+
+            var shipmentDiv = $('.shipment');
+
+            var dep = shipmentDiv.find('.departure').val();
+            var arr = shipmentDiv.find('.arrival').val();
+            var am = shipmentDiv.find('.amount').val();
+
+            var valid = true;
+
+            var validationError = "";
+
+            if (!(Math.floor(am) == am && $.isNumeric(am) && am > 0)) {
+                valid = false;
+                validationError = "Shipment amount must be a number greater than 0.";
+            }
+
+            if (dep == "")
+            {
+                valid = false;
+                validationError = "Estimated Time of Departure is required.";
+            }
+            
+            if(arr == "")
+            {
+                valid = false;
+                validationError = "Estimated Time of Arrival is required.";
+            } 
+            
+            if(am == "") 
+            { 
+                valid = false;
+                validationError = "Shipment Amount is required.";
+            }
+
+            if(!valid)
+            {
+                $('#tonsMessage').text(validationError);
+                return false;
+            }
+
+            var shipment = { 'EstimatedTimeDeparture': dep, 'EstimatedTimeArrival': arr, 'Amount': am };
+            var schedule = @Model.Schedule.ScheduleID;
+
+            var jsonShipment = JSON.stringify(shipment);
+            $.ajax(
+            {
+                url: '/SCM_POC/ShipmentAdd',
+                type: 'POST',
+                dataType: 'json',
+                data: { 'jsonShipment': jsonShipment, scheduleID: schedule },
+                success: function (result) {
+                    //alert(JSON.stringify(result));
+                    var success = result.success;
+                    var tonsLeft = result.tonsLeft;
+                    var errorText = result.errorText;
+
+                    //alert (errorText);
+
+                    if(success != -1){
+                        $("#Schedule div").detach();
+                        $("#Schedule").html("<div class='gantt'></div>");
+                        var shipmentDiv = $('.shipment');
+
+                        shipmentDiv.find('.departure').val("");
+                        shipmentDiv.find('.arrival').val("");
+                        shipmentDiv.find('.amount').val(tonsLeft);
+                    }
+
+                    else
+                    {
+                        $('#tonsMessage').text(errorText);
+                    }
+                },
+                complete: function(){ganttLoader();}
+            });
+
+        });
+
+
+        $('.datepicker').each(function () {
+            $(this).datepicker({
+                format: "yyyy-mm-dd",
+                orientation: "top left",
+                calendarWeeks: true,
+                todayHighlight: false
+            }).on("changeDate", function (e) {
+                var week = $(".active").parent();
+                $(week).children(".day").each(function () {
+                    $(this).addClass("active")
+                    });
+                });
+        });
+
+    });
+    $(document).on('mouseenter', ".week", function () {
+        $(this).children(".day").each(function () { $(this).addClass("focused") });
+    });
+    $(document).on('mouseleave', ".week", function () {
+        $(this).children(".day").each(function () { $(this).removeClass("focused") });
+    });
+
+    $("input:text").on("click", function () {
+        $(this).select();
+    });
+</script>

@@ -1,4 +1,4 @@
-﻿@model SCMS.ViewModels.GM_POC.DetailsPOCViewModel
+﻿@model SCMS.Models.Schedule
 
 
             <div class="container-fluid">
@@ -6,38 +6,38 @@
         <div class="span5 offset1">
             <div class="form-group">
                 <label>Customer Name: </label>
-                @Html.DisplayFor(model => Model.Schedule.POC.Customer.Name)
+                @Html.DisplayFor(model => Model.POC.Customer.Name)
             </div>
             <div class="form-group">
                 <label>Customer Address: </label>
-                @Html.DisplayFor(model => Model.Schedule.POC.Customer.Address)
+                @Html.DisplayFor(model => Model.POC.Customer.Address)
             </div>
             
             <div class="form-group">
                 <label>Incoterm:</label>
-                @Html.DisplayFor(model => Model.Schedule.POC.CustomerIncoterm.Name)
+                @Html.DisplayFor(model => Model.POC.CustomerIncoterm.Name)
             </div>
             <div class="table-bordered" style="margin: 0 15px 15px 0">
                 <div class="form-group">
                     <label>Comments: </label>
                 </div>
                 <div class="form-group">
-                    @Html.DisplayFor(model => model.Schedule.POC.Comments)
+                    @Html.DisplayFor(model => model.POC.Comments)
                 </div>
             </div>
         </div>
         <div class="span6 ">
             <div class="form-group">
                 <label>Product Type: </label>
-                @Html.DisplayFor(model => Model.Schedule.POC.Product.Name)
+                @Html.DisplayFor(model => Model.POC.Product.Name)
             </div>
             <div class="form-group">
                 <label>Price per Ton: $</label>
-                @Html.DisplayFor(model => Model.Schedule.POC.PricePerTon)
+                @Html.DisplayFor(model => Model.POC.PricePerTon)
             </div>
             <div class="form-group">
                 <label>Total Amount:</label>
-                @Html.DisplayFor(model => model.Schedule.POC.AmountTotal)
+                @Html.DisplayFor(model => model.POC.AmountTotal)
             </div>            
         </div>
     </div>

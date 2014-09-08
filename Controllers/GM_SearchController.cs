@@ -10,6 +10,7 @@ using System.Data.Entity;
 using SCMS.ViewModels.GM_Inbox;
 using SCMS.Models;
 using System.Web.Script.Serialization;
+using SCMS.RSolverTools;
 
 namespace SCMS.Controllers
 {
@@ -22,7 +23,7 @@ namespace SCMS.Controllers
         public ActionResult SearchPOC()
         {
             QueryObject all = new QueryObject();
-            ListPOCViewModel VM = new ListPOCViewModel(searchAll(all), "All");
+            ListPOCViewModel VM = new ListPOCViewModel(searchAll(all), "GM_Search");
 
             List<Product> products = db.Product.ToList();
 
@@ -164,25 +165,5 @@ namespace SCMS.Controllers
             return result;
         }
 
-    }
-
-    public class QueryObject
-    {
-        public QueryObject() 
-        {
-            query = "";
-        }
-
-        public string query { get; set; }
-
-        public bool searchByPOC { get; set; }
-
-        public int productType { get; set; }
-
-        public int statusPOC { get; set; }
-
-        public int month { get; set; }
-
-        public int year { get; set; }
-    }
+    }    
 }

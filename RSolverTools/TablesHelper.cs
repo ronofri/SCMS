@@ -10,31 +10,66 @@ namespace SCMS.RSolverTools
     {
         public Dictionary<string, List<POC>> POCs {get;set;}
 
+        public Dictionary<string, List<POME>> POMEs { get; set; }
+
+        public Dictionary<string, List<BL>> BLs { get; set; }
+
         public Dictionary<string, bool> Flags { get; set; }
 
         public Dictionary<string, string> Title { get; set; }
 
+        public string user { get; set; }
+
         public int Count { get; set; }
+
         public TablesHelper(List<POC> source, string user)
         {
-            Title = new Dictionary<string, string>();
+            initialize(user);
+            initializeFlags();
             Count = source.Count;
-            if (user == "All")
+            if (user == "GM_Search")
             {
                 ListAll(source);
             }
-
             else 
             {
                 initializePOC();
                 ListFilter(source);
-                FlagFilter(user);
+                FlagFilter();
             } 
         }
 
-        public void initializePOC()
+        public TablesHelper(List<POC> source_poc, List<POME> source_pome, List<BL> source_bl,string user)
         {
+            initialize(user);
+            initializeFlags();
+            //Count = source.Count;
+            if (user == "SCM_Search")
+            {
+                ListAll(source_poc);
+            }
+            else
+            {
+                initializePOC();
+                ListFilter(source_poc);
+                ListFilter(source_pome);
+                ListFilter(source_bl);
+                FlagFilter();
+            }
+        }
+
+        public void initialize(string user)
+        {
+            Title = new Dictionary<string, string>();
             Flags = new Dictionary<string, bool>();
+            POCs = new Dictionary<string, List<POC>>();
+            POMEs = new Dictionary<string, List<POME>>();
+            BLs = new Dictionary<string, List<BL>>();
+            this.user = user;
+        }
+
+        public void initializeFlags()
+        {
             Flags.Add("PO Number", true);
             Flags.Add("PO Status", true);
             Flags.Add("Customer Name", true);
@@ -45,7 +80,37 @@ namespace SCMS.RSolverTools
             Flags.Add("Amount (Tons)", true);
             Flags.Add("Price Per Tons", true);
             Flags.Add("Creation Date", true);
-            POCs = new Dictionary<string, List<POC>>();
+        //    switch (this.user)
+        //    {
+        //        case "GM":
+                    //Flags.Add("PO Number", true);
+                    //Flags.Add("PO Status", true);
+                    //Flags.Add("Customer Name", true);
+                    //Flags.Add("Customer Address", true);
+                    //Flags.Add("Destination Port", true);
+                    //Flags.Add("Incoterm", true);
+                    //Flags.Add("Product Type", true);
+                    //Flags.Add("Amount (Tons)", true);
+                    //Flags.Add("Price Per Tons", true);
+                    //Flags.Add("Creation Date", true);
+        //            break;
+        //        case "SCM":
+        //            Flags.Add("PO Number", true);
+        //            Flags.Add("PO Status", true);
+        //            Flags.Add("Customer Name", true);
+        //            Flags.Add("Customer Address", true);
+        //            Flags.Add("Destination Port", true);
+        //            Flags.Add("Incoterm", true);
+        //            Flags.Add("Product Type", true);
+        //            Flags.Add("Amount (Tons)", true);
+        //            Flags.Add("Price Per Tons", true);
+        //            Flags.Add("Creation Date", true);
+        //            break;
+        //    }
+        }
+
+        public void initializePOC()
+        {
             List<POC> incomplete = new List<POC>();
             POCs.Add("1", incomplete);
             Title.Add("1", "Recent Incomplete Customer PO's");
@@ -77,30 +142,56 @@ namespace SCMS.RSolverTools
             }
         }
 
+        public void ListFilter(List<POME> source)
+        {
+            foreach (POME pome in source)
+            {
+                //Filter Action
+                switch (pome.Status)
+                {
+                    case 1:
+                        POMEs["1"].Add(pome);
+                        break;
+                    case 2:
+                        POMEs["2"].Add(pome);
+                        break;
+                    case -1:
+                        POMEs["100"].Add(pome);
+                        break;
+                }
+            }
+        }
+
+        public void ListFilter(List<BL> source)
+        {
+            foreach (BL bl in source)
+            {
+                //Filter Action
+                switch (bl.Status)
+                {
+                    case 1:
+                        BLs["1"].Add(bl);
+                        break;
+                    case 2:
+                        BLs["2"].Add(bl);
+                        break;
+                    case -1:
+                        BLs["100"].Add(bl);
+                        break;
+                }
+            }
+        }
+
         public void ListAll(List<POC> source)
         {
-            Flags = new Dictionary<string, bool>();
-            Flags.Add("PO Number", true);
-            Flags.Add("PO Status", true);
-            Flags.Add("Customer Name", true);
-            Flags.Add("Customer Address", true);
-            Flags.Add("Destination Port", true);
-            Flags.Add("Incoterm", true);
-            Flags.Add("Product Type", true);
-            Flags.Add("Amount (Tons)", true);
-            Flags.Add("Price Per Tons", true);
-            Flags.Add("Creation Date", true);
-
-            POCs = new Dictionary<string, List<POC>>();
             List<POC> all = source;
-
             POCs.Add("0", all);
             Title.Add("0", "Result Customer PO's");
         }
 
-        public void FlagFilter(string query)
+        public void FlagFilter()
         {
-            switch (query)
+            switch (this.user)
             {
                 case "GM":
                     Flags["Customer Address"] = false;
