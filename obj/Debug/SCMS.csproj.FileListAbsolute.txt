@@ -204,8 +204,6 @@ C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.pdb
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csprojResolveAssemblyReference.cache
 <<<<<<< HEAD
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Mvc.Mailer.dll
-C:\Users\Cristian\Desktop\RSolver\SCMS\bin\Mvc.Mailer.dll
 C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.DeletePOME.resources
 =======
 >>>>>>> origin/master
