@@ -160,10 +160,14 @@ C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.InitialMigratio
 C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.csproj.GenerateResource.Cache
 C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.dll
 C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.pdb
+C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.UserSystemAdded.resources
+C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.ModelUpdate2.resources
+C:\Users\Cristian\Desktop\RSolver\SCMS\bin\Mvc.Mailer.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\SCMS.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\SCMS.pdb
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Mvc.Mailer.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Net.Http.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Net.Http.Formatting.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\System.Net.Http.WebRequest.dll
@@ -193,14 +197,15 @@ C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.Data.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\WebMatrix.WebData.xml
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.InitialMigration.resources
+C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.UserSystemAdded.resources
+C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.ModelUpdate2.resources
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csproj.GenerateResource.Cache
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.dll
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.pdb
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.UserSystemAdded.resources
-C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.UserSystemAdded.resources
-C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.ModelUpdate2.resources
-C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.Migrations.ModelUpdate2.resources
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\obj\Debug\SCMS.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\Renato\Desktop\ElecmetalFromScratch\SCMS\bin\Mvc.Mailer.dll
 C:\Users\Cristian\Desktop\RSolver\SCMS\bin\Mvc.Mailer.dll
 C:\Users\Cristian\Desktop\RSolver\SCMS\obj\Debug\SCMS.Migrations.DeletePOME.resources
+=======
+>>>>>>> origin/master
