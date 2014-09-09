@@ -439,6 +439,36 @@ namespace SCMS.Controllers
             return null;
         }
 
+        public PartialViewResult AjaxEditShipment(int ShipmentID)
+        {
+            Shipment shipment = db.Shipment.Find(ShipmentID);
+            return this.PartialView(shipment);
+        }
+
+        public JsonResult EditShipment(string jsonShipment)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Shipment shipment = serializer.Deserialize<Shipment>(jsonShipment);
+            Shipment dbShipment = db.Shipment.Find(shipment.ShipmentID);
+            dbShipment.Amount = shipment.Amount;
+            //dbShipment.DestinationPort = shipment.DestinationPort;
+            //dbShipment.EstimatedTimeArrival= shipment.EstimatedTimeArrival;
+            //dbShipment.EstimatedTimeDeparture= shipment.EstimatedTimeDeparture;
+            db.Entry(dbShipment).State = EntityState.Modified;
+            int success = -1;
+            string error = "";
+            try
+            {
+                success = db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                error = "Error en la base de datos";
+            }
+            var jsonObject = new { success = success, errorText = error };
+            return Json(jsonObject, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

@@ -7,7 +7,6 @@ namespace SCMS.DAL
     public class DataBaseContext : DbContext
     {
         public DbSet<POC> POC { get; set; }
-        public DbSet<POME> POME { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<DestinationPort> DestinationPort { get; set; }
         public DbSet<Alloy> Alloy { get; set; }

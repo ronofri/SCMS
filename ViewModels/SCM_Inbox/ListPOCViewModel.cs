@@ -19,9 +19,9 @@ namespace SCMS.ViewModels.SCM_Inbox
             tablesHelper = new TablesHelper(source, user);
         }
 
-        public ListPOCViewModel(List<POC> source_poc, List<POME> source_pome, List<BL> source_bl, string user)
+        public ListPOCViewModel(List<POC> source_poc, List<Shipment> source_shipment, List<BL> source_bl, string user)
         {
-            tablesHelper = new TablesHelper(source_poc, source_pome, source_bl, user);
+            tablesHelper = new TablesHelper(source_poc, source_shipment, source_bl, user);
         }
 
         public List<Product> Products { get; set; }

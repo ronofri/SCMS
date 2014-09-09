@@ -1,0 +1,41 @@
+﻿@model SCMS.Models.Shipment
+
+<div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Shipment @Model.ShipmentNumber</h4>
+            </div>
+            <div class="modal-body">
+                @Html.EditorFor(model => model, "EditShipment")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary edit" data-dismiss="modal">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".edit").on("click", function () {
+            var shipment = {'shipmentid': @Model.ShipmentID,'amount': $("#Amount").val()}
+            var stringShipment = JSON.stringify(shipment);
+            $.ajax(
+            {
+                url: '/GM_POC/EditShipment',
+                type: 'POST',
+                dataType: 'json',
+                data: {jsonShipment: stringShipment},
+                success: function (result) {
+                    var success = result.success;
+                },
+                complete: function () {
+                    ganttLoader();
+                },
+                error: function () { alert("error"); } //should change div element html and ask the user to refresh
+            });
+        });
+    });
+</script>

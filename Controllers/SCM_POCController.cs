@@ -427,6 +427,12 @@ namespace SCMS.Controllers
             return null;
         }
 
+        public PartialViewResult AjaxEditShipment(int ShipmentID)
+        {
+            Shipment shipment = db.Shipment.Find(ShipmentID);
+            return this.PartialView(shipment);
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

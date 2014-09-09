@@ -29,25 +29,6 @@ namespace SCMS.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? CreationDate { get; set; }
 
-        public virtual ICollection<POME> PurchaseOrders { get; set; }
-
-        public int POMECount
-        {
-            get
-            {
-                int count = 0;
-                if (PurchaseOrders != null)
-                {
-                    foreach (POME POME in PurchaseOrders)
-                    {
-                        if (POME.Status != -1)
-                            count++;
-                    }
-                }
-                return count;
-            }
-        }
-
         public string StatusString { get 
             { 
                 switch(Status){
@@ -64,22 +45,6 @@ namespace SCMS.Models
                     default:
                         return "Unknown";
                 }
-            } 
-        }
-
-        public int TonsLeft { 
-            get 
-            {
-                int left = AmountTotal;
-                if (PurchaseOrders != null)
-                {
-                    foreach (POME POME in PurchaseOrders)
-                    {
-                        if (POME.Status != -1)
-                            left -= POME.Amount;
-                    }
-                }
-                return left;
             } 
         }
     }

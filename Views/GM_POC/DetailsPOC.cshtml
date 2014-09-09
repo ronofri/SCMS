@@ -69,34 +69,50 @@
         </div>
     </div>
 </div>
+<a class="modal-edit hidden" data-toggle="modal" data-target="#editModal" data-id=@Model.Schedule.POC.POCID>Edit</a>
+<div id="editShipment">
+</div>
 <script type="text/javascript">
-
-    $(document).ready(function () {
-        function ganttLoader(){
+    function ganttLoader(){
             
-            var schedule = @Model.Schedule.ScheduleID;
-            $.ajax(
-            {
-                url: '/GM_POC/ShipmentSource',
-                type: 'GET',
-                dataType: 'json',
-                data: { scheduleID: schedule },
-                success: function (result) {
-                    //alert(JSON.stringify(result));
-                    $(".gantt").gantt({
-                        source: result,
-                        scale: "weeks",
-                        minScale: "days",
-                        maxScale: "months",
-                        navigate: "scroll",
-                        itemsPerPage: 10,
-                        scrollToToday: true
-                    });
-                },
-                error: function () { alert("error"); } //should change div element html and ask the user to refresh
-
-            });
-        }
+        var schedule = @Model.Schedule.ScheduleID;
+        $.ajax(
+        {
+            url: '/GM_POC/ShipmentSource',
+            type: 'GET',
+            dataType: 'json',
+            data: { scheduleID: schedule },
+            success: function (result) {
+                //alert(JSON.stringify(result));
+                $(".gantt").gantt({
+                    source: result,
+                    scale: "weeks",
+                    minScale: "days",
+                    maxScale: "months",
+                    navigate: "scroll",
+                    itemsPerPage: 10,
+                    scrollToToday: true,
+                    onItemClick: function(data){                            
+                        $.ajax({
+                            url: '/GM_POC/AjaxEditShipment',
+                            data: { ShipmentID: data.ShipmentID },
+                            cache: false,
+                            type: "POST",
+                            dataType: "html",
+                            success: function (data, textStatus, XMLHttpRequest) {
+                                $("#editShipment").html(data);
+                                $(".modal-edit").trigger("click");
+                            }
+                        });
+                            
+                    }
+                });
+            },
+            error: function () { alert("error"); } //should change div element html and ask the user to refresh
+        });
+    }
+    $(document).ready(function () {
+        
 
         ganttLoader();
 

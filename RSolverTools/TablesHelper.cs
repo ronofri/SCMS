@@ -10,7 +10,7 @@ namespace SCMS.RSolverTools
     {
         public Dictionary<string, List<POC>> POCs {get;set;}
 
-        public Dictionary<string, List<POME>> POMEs { get; set; }
+        public Dictionary<string, List<Shipment>> Shipments { get; set; }
 
         public Dictionary<string, List<BL>> BLs { get; set; }
 
@@ -39,7 +39,7 @@ namespace SCMS.RSolverTools
             } 
         }
 
-        public TablesHelper(List<POC> source_poc, List<POME> source_pome, List<BL> source_bl,string user)
+        public TablesHelper(List<POC> source_poc, List<Shipment> source_shipment, List<BL> source_bl,string user)
         {
             initialize(user);
             initializeFlags();
@@ -52,7 +52,7 @@ namespace SCMS.RSolverTools
             {
                 initializePOC();
                 ListFilter(source_poc);
-                ListFilter(source_pome);
+                ListFilter(source_shipment);
                 ListFilter(source_bl);
                 FlagFilter();
             }
@@ -63,7 +63,7 @@ namespace SCMS.RSolverTools
             Title = new Dictionary<string, string>();
             Flags = new Dictionary<string, bool>();
             POCs = new Dictionary<string, List<POC>>();
-            POMEs = new Dictionary<string, List<POME>>();
+            Shipments = new Dictionary<string, List<Shipment>>();
             BLs = new Dictionary<string, List<BL>>();
             this.user = user;
         }
@@ -142,21 +142,21 @@ namespace SCMS.RSolverTools
             }
         }
 
-        public void ListFilter(List<POME> source)
+        public void ListFilter(List<Shipment> source)
         {
-            foreach (POME pome in source)
+            foreach (Shipment pome in source)
             {
                 //Filter Action
                 switch (pome.Status)
                 {
                     case 1:
-                        POMEs["1"].Add(pome);
+                        Shipments["1"].Add(pome);
                         break;
                     case 2:
-                        POMEs["2"].Add(pome);
+                        Shipments["2"].Add(pome);
                         break;
                     case -1:
-                        POMEs["100"].Add(pome);
+                        Shipments["100"].Add(pome);
                         break;
                 }
             }

@@ -17,9 +17,9 @@ namespace SCMS.Controllers
         public ActionResult Inbox()
         {
             List<POC> POCs = db.POC.ToList<POC>();
-            List<POME> POMEs = db.POME.ToList<POME>();
+            List<Shipment> Shipments = db.Shipment.ToList<Shipment>();
             List<BL> BLs = db.BL.ToList<BL>();
-            ListPOCViewModel VM = new ListPOCViewModel(POCs, POMEs, BLs, "SCM");
+            ListPOCViewModel VM = new ListPOCViewModel(POCs, Shipments, BLs, "SCM");
             return View(VM);
         }
 
