@@ -10,7 +10,7 @@ namespace SCMS.RSolverTools
     {
         public GanttSource(Shipment shipment) 
         {
-            name = "Shipment " + shipment.ShipmentNumber;
+            name = "Shipment " + shipment.ShipmentID;
             values = new List<GanttValue>();
 
             values.Add(new GanttValue(shipment));

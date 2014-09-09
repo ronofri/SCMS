@@ -14,6 +14,7 @@ using SCMS.RSolverTools;
 
 namespace SCMS.Controllers
 {
+    [Authorize(Roles = "GM")]
     public class GM_SearchController : Controller
     {
         private DataBaseContext db = new DataBaseContext();

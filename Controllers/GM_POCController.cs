@@ -17,6 +17,7 @@ using SCMS.Mailers;
 
 namespace SCMS.Controllers
 {
+    [Authorize(Roles = "GM")]
     public class GM_POCController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
@@ -335,7 +336,8 @@ namespace SCMS.Controllers
 
             foreach (Shipment s in shipments)
             {
-                source.Add(new GanttSource(s));
+                if(s.Status != -1)
+                    source.Add(new GanttSource(s));
             }
 
             return Json(source, JsonRequestBehavior.AllowGet);
@@ -466,6 +468,46 @@ namespace SCMS.Controllers
                 error = "Error en la base de datos";
             }
             var jsonObject = new { success = success, errorText = error };
+            return Json(jsonObject, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteShipment(int ShipmentID)
+        {
+            //add some error handling
+            Shipment shipment = db.Shipment.Include(x => x.Schedule.POC).Where(x => x.ShipmentID == ShipmentID).ToList<Shipment>()[0];
+            
+
+            db.Entry(shipment).State = EntityState.Modified;
+
+            int success = -1;
+            string error = "";
+            int tonsLeft = shipment.Schedule.TonsLeft;
+            int amount = shipment.Amount;
+
+            shipment.Status = -1;
+            int shipmentCount = shipment.Schedule.ActiveShipmentCount;
+
+            bool fullReload = false;
+            if (shipmentCount == 0) 
+            {
+                fullReload = true;
+            }
+
+            try
+            {
+                success = db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                error = "Error while saving changes to database.";
+            }
+
+            if (error == "") 
+            {
+                tonsLeft = tonsLeft + amount;
+            }
+
+            var jsonObject = new { success = success, errorText = error, tonsLeft = tonsLeft, fullReload = fullReload};
             return Json(jsonObject, JsonRequestBehavior.AllowGet);
         }
 

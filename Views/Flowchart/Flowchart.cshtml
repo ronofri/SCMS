@@ -1,0 +1,87 @@
+﻿@model SCMS.ViewModels.Flowchart.FlowchartViewModel
+
+@{
+    if (User.IsInRole("GM"))
+    {
+        Layout = "~/Views/Shared/_LayoutGM.cshtml";
+    }
+
+    else if (User.IsInRole("SCM"))
+    {
+        Layout = "~/Views/Shared/_LayoutSCM.cshtml";
+    }
+}
+
+<div id="Flowchart">
+    @if (Model.ShipmentCount != 0)
+    {
+        <div class="gantt">
+        </div>
+    }
+    else
+    {
+        <div>
+            @Html.DisplayFor(model => Model.alert)
+        </div>
+    }
+</div>
+
+
+<script type="text/javascript">
+
+    function ganttCleaner() {
+        $("#Flowchart").html("<div class='gantt'></div>");
+    }
+
+    function ganttLoader() {
+
+        var queryObject = {
+//            'query': queryText,
+//            'searchByPOC': searchByPOC, //true is for searching by ID, false to search by customer/port
+//            'productType': productVal,
+//            'statusPOC': statusVal,
+//            'month': monthVal,
+//            'year': yearVal
+        };
+        var jsonQuery = JSON.stringify(queryObject);
+
+        $.ajax(
+        {
+            url: '/Flowchart/loadShipments',
+            type: 'POST',
+            dataType: 'json',
+            data: { jsonQuery: jsonQuery },
+            success: function (result) {
+                $(".gantt").gantt({
+                    source: result,
+                    scale: "weeks",
+                    minScale: "days",
+                    maxScale: "months",
+                    navigate: "scroll",
+                    itemsPerPage: 10,
+                    scrollToToday: true,
+                    onItemClick: function(data){                            
+                        $.ajax({
+                            url: '/GM_POC/AjaxEditShipment',
+                            data: { ShipmentID: data.ShipmentID },
+                            cache: false,
+                            type: "POST",
+                            dataType: "html",
+                            success: function (data, textStatus, XMLHttpRequest) {
+                                $("#editShipment").html(data);
+                                $(".modal-edit").trigger("click");
+                            }
+                        });
+                            
+                    }
+                });
+            },
+            error: function () { alert("error"); } //should change div element html and ask the user to refresh
+        });
+    }
+
+    $(document).ready(function () {
+        ganttLoader(); //maybe with some parameter
+    });
+
+</script>

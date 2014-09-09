@@ -9,12 +9,12 @@ using SCMS.DAL;
 
 namespace SCMS.Controllers
 {
+    [Authorize(Roles = "GM")]
     public class GM_InboxController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
         //
         // GET: /GM_Inbox/
-        [Authorize(Roles="GM")]
         public ActionResult Inbox()
         {
             List<POC> POCs = db.POC.ToList<POC>();
