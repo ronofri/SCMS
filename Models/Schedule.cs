@@ -23,10 +23,32 @@ namespace SCMS.Models
                 {
                     foreach (Shipment shipment in Shipments)
                     {
-                        left -= shipment.Amount;
+                        if (shipment.Status != -1)
+                        {
+                            left -= shipment.Amount;
+                        }
                     }
                 }
                 return left;
+            }
+        }
+
+        public int ActiveShipmentCount
+        {
+            get
+            {
+                int count = 0;
+                if (Shipments != null)
+                {
+                    foreach (Shipment shipment in Shipments)
+                    {
+                        if (shipment.Status != -1)
+                        {
+                            count += 1;
+                        }
+                    }
+                }
+                return count;
             }
         }
     }

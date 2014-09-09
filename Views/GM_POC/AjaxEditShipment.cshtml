@@ -11,7 +11,7 @@
                 @Html.EditorFor(model => model, "EditShipment")
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-danger pull-left delete" data-dismiss="modal">Delete</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary edit" data-dismiss="modal">Save Changes</button>
             </div>
@@ -32,6 +32,50 @@
                 data: {jsonShipment: stringShipment, portProperty: port},
                 success: function (result) {
                     var success = result.success;
+                },
+                complete: function () {
+                    ganttLoader();
+                },
+                error: function () { alert("error"); } //should change div element html and ask the user to refresh
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".delete").on("click", function () {
+            var id = @Model.ShipmentID;
+            $.ajax(
+            {
+                url: '/GM_POC/DeleteShipment',
+                type: 'POST',
+                dataType: 'json',
+                data: {ShipmentID: id},
+                success: function (result) {
+
+                    var success = result.success;
+                    var tonsLeft = result.tonsLeft;
+                    var reload = result.fullReload;
+
+                    if(success != -1)
+                    {
+                        var shipmentDiv = $('.shipment');
+
+                        shipmentDiv.find('.departure').val("");
+                        shipmentDiv.find('.arrival').val("");
+                        shipmentDiv.find('.amount').val(tonsLeft);
+                    }
+                    else
+                    {
+                        //Do something to signal the error in database, like inserting some html
+                        //somewhere
+                    }
+
+                    if(reload)
+                    {
+                        location.reload();
+                    }
                 },
                 complete: function () {
                     ganttLoader();

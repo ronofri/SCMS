@@ -175,6 +175,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FlowchartController.cs" />
     <Compile Include="Controllers\SCM_SearchController.cs" />
     <Compile Include="Controllers\SCM_POCController.cs" />
     <Compile Include="Controllers\SCM_InboxController.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="RSolverTools\GanttSource.cs" />
     <Compile Include="RSolverTools\QueryObject.cs" />
     <Compile Include="RSolverTools\TablesHelper.cs" />
+    <Compile Include="ViewModels\Flowchart\FlowchartViewModel.cs" />
     <Compile Include="ViewModels\SCM_Inbox\ListPOCViewModel.cs" />
     <Compile Include="ViewModels\GM_Inbox\ListPOCViewModel.cs" />
     <Compile Include="ViewModels\SCM_POC\CreateEditPOCViewModel.cs" />
@@ -348,6 +350,7 @@
     <Content Include="Views\GM_POC\AjaxEditShipment.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EditShipment.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ListShipment.cshtml" />
+    <Content Include="Views\Flowchart\Flowchart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
