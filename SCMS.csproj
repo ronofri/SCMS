@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201409081526564_ModelUpdate2.Designer.cs">
       <DependentUpon>201409081526564_ModelUpdate2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409091517485_DeletePOME.cs" />
+    <Compile Include="Migrations\201409091517485_DeletePOME.Designer.cs">
+      <DependentUpon>201409091517485_DeletePOME.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Alloy.cs" />
@@ -213,7 +217,6 @@
     <Compile Include="Models\Incoterm.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\POC.cs" />
-    <Compile Include="Models\POME.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\Shipment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -246,6 +249,7 @@
     <Content Include="Content\images\iconCog.png" />
     <Content Include="Content\images\iconUser.svg" />
     <Content Include="Content\images\icon_sprite.png" />
+    <Content Include="Content\images\iconUser.svg" />
     <Content Include="Content\images\logo_elecmetal.png" />
     <Content Include="Content\images\slider_handle.png" />
     <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
@@ -341,6 +345,8 @@
     <Content Include="Views\Shared\_LayoutSCM.cshtml" />
     <Content Include="Views\UserMailer\_Layout.cshtml" />
     <Content Include="Views\UserMailer\Notification.cshtml" />
+    <Content Include="Views\GM_POC\AjaxEditShipment.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditShipment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
@@ -352,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409081526564_ModelUpdate2.resx">
       <DependentUpon>201409081526564_ModelUpdate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409091517485_DeletePOME.resx">
+      <DependentUpon>201409091517485_DeletePOME.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
