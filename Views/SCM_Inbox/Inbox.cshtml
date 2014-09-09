@@ -13,6 +13,7 @@
 <ul class="nav nav-tabs" role="tablist">
     <li class="active"><a href="#poc" role="tab" data-toggle="tab">POC</a></li>
     <li><a href="#shipment" role="tab" data-toggle="tab">Shipment</a></li>
+    <li><a href="#bl" role="tab" data-toggle="tab">BL</a></li>
 </ul>
 <div class="tab-content">
     <div class="tab-pane active" id="poc">
@@ -23,8 +24,18 @@
         </div>
     </div>
     <div class="tab-pane " id="shipment">
-
-
+        <div class="container-fluid">
+            <div class="row-fluid">
+                @Html.DisplayFor(model => model.tablesHelper, "ListShipment")
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane " id="bl">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                @*@Html.DisplayFor(model => model.tablesHelper, "ListPOC")*@
+            </div>
+        </div>
     </div>
 </div>
 }

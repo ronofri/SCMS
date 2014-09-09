@@ -51,6 +51,8 @@ namespace SCMS.RSolverTools
             else
             {
                 initializePOC();
+                initializeShipment();
+                initializeBL();
                 ListFilter(source_poc);
                 ListFilter(source_shipment);
                 ListFilter(source_bl);
@@ -74,12 +76,16 @@ namespace SCMS.RSolverTools
             Flags.Add("PO Status", true);
             Flags.Add("Customer Name", true);
             Flags.Add("Customer Address", true);
-            Flags.Add("Destination Port", true);
             Flags.Add("Incoterm", true);
             Flags.Add("Product Type", true);
             Flags.Add("Amount (Tons)", true);
             Flags.Add("Price Per Tons", true);
             Flags.Add("Creation Date", true);
+            Flags.Add("Shipment Status", true);
+            Flags.Add("Amount", true);
+            Flags.Add("Destination Port", true);
+            Flags.Add("Estimated Time Departure", true);
+            Flags.Add("Estimated Time Arrival", true);            
         //    switch (this.user)
         //    {
         //        case "GM":
@@ -117,9 +123,26 @@ namespace SCMS.RSolverTools
             List<POC> sent = new List<POC>();
             POCs.Add("2", sent);
             Title.Add("2", "Recent Sent Customer PO's");
-            List<POC> cancelled = new List<POC>();
-            POCs.Add("100", cancelled);
-            Title.Add("100", "Recent Cancelled Customer PO's");
+        }
+
+        public void initializeShipment()
+        {
+            List<Shipment> incomplete = new List<Shipment>();
+            Shipments.Add("3", incomplete);
+            Title.Add("3", "Recent Shipments");
+            List<Shipment> sent = new List<Shipment>();
+            Shipments.Add("4", sent);
+            Title.Add("4", "Recent Sent Customer PO's");
+        }
+
+        public void initializeBL()
+        {
+            List<BL> incomplete = new List<BL>();
+            BLs.Add("5", incomplete);
+            Title.Add("5", "Recent Incomplete Customer PO's");
+            List<BL> sent = new List<BL>();
+            BLs.Add("6", sent);
+            Title.Add("6", "Recent Sent Customer PO's");
         }
 
         public void ListFilter(List<POC> source)
@@ -135,28 +158,25 @@ namespace SCMS.RSolverTools
                     case 2:
                         POCs["2"].Add(poc);
                         break;
-                    case -1:
-                        POCs["100"].Add(poc);
-                        break;
                 }
             }
         }
 
         public void ListFilter(List<Shipment> source)
         {
-            foreach (Shipment pome in source)
+            foreach (Shipment shipment in source)
             {
                 //Filter Action
-                switch (pome.Status)
+                switch (shipment.Status)
                 {
                     case 1:
-                        Shipments["1"].Add(pome);
+                        Shipments["3"].Add(shipment);
                         break;
                     case 2:
-                        Shipments["2"].Add(pome);
-                        break;
-                    case -1:
-                        Shipments["100"].Add(pome);
+                        Shipments["4"].Add(shipment);
+                        break;                    
+                    default:
+                        Shipments["3"].Add(shipment);
                         break;
                 }
             }
@@ -170,13 +190,10 @@ namespace SCMS.RSolverTools
                 switch (bl.Status)
                 {
                     case 1:
-                        BLs["1"].Add(bl);
+                        BLs["5"].Add(bl);
                         break;
                     case 2:
-                        BLs["2"].Add(bl);
-                        break;
-                    case -1:
-                        BLs["100"].Add(bl);
+                        BLs["6"].Add(bl);
                         break;
                 }
             }

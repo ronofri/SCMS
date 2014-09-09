@@ -441,19 +441,25 @@ namespace SCMS.Controllers
 
         public PartialViewResult AjaxEditShipment(int ShipmentID)
         {
-            Shipment shipment = db.Shipment.Find(ShipmentID);
+            Shipment shipment = db.Shipment.Include(x => x.DestinationPort).Where(x => x.ShipmentID == ShipmentID).First();
             return this.PartialView(shipment);
         }
 
-        public JsonResult EditShipment(string jsonShipment)
+        public JsonResult EditShipment(string jsonShipment, string portProperty)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Shipment shipment = serializer.Deserialize<Shipment>(jsonShipment);
+            foreach(DestinationPort port in db.DestinationPort.ToList<DestinationPort>()){
+                if (port.PortProperty == portProperty)
+                    shipment.DestinationPort = port;
+            }
             Shipment dbShipment = db.Shipment.Find(shipment.ShipmentID);
-            dbShipment.Amount = shipment.Amount;
-            //dbShipment.DestinationPort = shipment.DestinationPort;
-            //dbShipment.EstimatedTimeArrival= shipment.EstimatedTimeArrival;
-            //dbShipment.EstimatedTimeDeparture= shipment.EstimatedTimeDeparture;
+            if (shipment.DestinationPort != null)
+                dbShipment.DestinationPort = shipment.DestinationPort;
+            if (shipment.EstimatedTimeArrival != null)
+                dbShipment.EstimatedTimeArrival = shipment.EstimatedTimeArrival;
+            if (shipment.EstimatedTimeDeparture != null)
+                dbShipment.EstimatedTimeDeparture = shipment.EstimatedTimeDeparture;
             db.Entry(dbShipment).State = EntityState.Modified;
             int success = -1;
             string error = "";

@@ -2,22 +2,68 @@
 
     <div class="container-fluid">
     <div class="row-fluid">
-
-        <div class="span5">
-            @*
+        @*
             change
                 Port
                 ETA
                 ETD
             Delete Button
-            *@
+        *@
+        <div class="form-group span5">
             <div class="form-group">
-                @Html.LabelFor(model => model.Amount)
+                @Html.LabelFor(model => model.DestinationPort)
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(model => model.Amount, new { autocomplete = "off" })
-                <label id="error_amount" class="hidden" style="color:red"></label>
+                @Html.TextBoxFor(model => model.DestinationPort.PortProperty, new { autocomplete = "off", @class = "typeaheadPort"})                
+            </div>
+                <label>Estimated Time of Departure</label>
+                <input class="datepicker departure" name="EstimatedTimeDeparture" type="text" />
+            </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StatusString)
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.StatusString, new { autocomplete = "off", disabled = "disabled"})
+        </div>
+            <div class="form-group">
+                <label>Estimated Time of Arrival</label>                
+                <input class="datepicker arrival" name="EstimatedTimeArrival" type="text" />
             </div>
         </div>
-    </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.modal').find('.datepicker').each(function () {
+            $(this).datepicker({
+                format: "yyyy-mm-dd",
+                orientation: "top left",
+                calendarWeeks: true,
+                todayHighlight: false
+            }).on("changeDate", function (e) {
+                var week = $(".active").parent();
+                $(week).children(".day").each(function () {
+                    $(this).addClass("active")
+                });
+            });
+        });
+        $('.typeaheadPort').typeahead(
+        {
+            source: function (query, process) {
+                var ports = [];
+                map = {};
+                // This is going to make an HTTP post request to the controller
+                return $.post('/GM_POC/PortSearch', { query: query }, function (data) {
+                    // Loop through and push to the array
+                    //alert(data);
+                    $.each(data, function (i, port) {
+                        var property = port.PortProperty;
+                        map[property] = port;
+                        ports.push(property);
+                    });
+                    // Process the details
+                    process(ports);
+                });
+            }
+        });
+    });
+</script>

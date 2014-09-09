@@ -23,30 +23,6 @@
                 });
             }
         });
-    $('.typeaheadPort').typeahead(
-        {
-            source: function (query, process) {
-                var ports = [];
-                map = {};
-
-                // This is going to make an HTTP post request to the controller
-                return $.post('/GM_POC/PortSearch', { query: query }, function (data) {
-                    // Loop through and push to the array
-                    //alert(data);
-
-                    $.each(data, function (i, port) {
-
-                        var property = port.PortProperty;
-                        map[property] = port;
-                        ports.push(property);
-                    });
-
-
-                    // Process the details
-                    process(ports);
-                });
-            }
-        });
 });
 
 $(document).ready(function () {

@@ -1,0 +1,107 @@
+﻿@model SCMS.RSolverTools.TablesHelper
+
+@foreach (KeyValuePair<string, List<SCMS.Models.Shipment>> pair in Model.Shipments)
+{
+    if (pair.Value.Count() > 0)
+    {
+        <div class="block">
+            <a class="block-heading btn btn-xs accordion">@Model.Title[pair.Key.ToString()]</a>
+            <table class="table collapse in">
+                <tr>
+                    @if (Model.Flags["Shipment Status"])
+                    {
+                        <th>
+                            Shipment Status
+                        </th>
+                    }
+                    @if (Model.Flags["Amount"])
+                    {
+                        <th>
+                            Amount
+                        </th>
+                    }
+                    @if (Model.Flags["Destination Port"])
+                    {
+                        <th>
+                            Destination Port
+                        </th>
+                    }
+                    @if (Model.Flags["Estimated Time Departure"])
+                    {
+                        <th>
+                            Estimated Time Departure
+                        </th>
+                    }
+                    @if (Model.Flags["Estimated Time Arrival"])
+                    {
+                        <th>
+                            Estimated Time Arrival
+                        </th>
+                    }
+                    <th></th>
+                </tr>
+
+                @foreach (var item in pair.Value)
+                {
+                    <tr>
+                        @if (Model.Flags["Shipment Status"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StatusString)
+                            </td>
+                        }
+                        @if (Model.Flags["Amount"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                        }
+                        @if (Model.Flags["Destination Port"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DestinationPort.PortProperty)
+                            </td>
+                        }
+                        @if (Model.Flags["Estimated Time Departure"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EstimatedTimeDeparture)
+                            </td>
+                        }
+                        @if (Model.Flags["Estimated Time Arrival"])
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EstimatedTimeArrival)
+                            </td>
+                        }                        
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                    <img src="~/Content/images/iconCog.png" width="15" height="15">
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+                                    @*@switch (Model.user)
+                                    {
+                                        case "GM":
+                                            <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = item.POCID, controller = "GM_POC" })</li>
+                                            <li role="presentation">@Html.ActionLink("Details", "DetailsPOC", new { id = item.POCID, controller = "GM_POC" })</li>
+                                            break;
+                                        case "SCM":
+                                            <li role="presentation">@Html.ActionLink("Edit", "EditPOC", new { id = item.POCID, controller = "SCM_POC" })</li>
+                                            <li role="presentation">@Html.ActionLink("Details", "DetailsPOC", new { id = item.POCID, controller = "SCM_POC" })</li>
+                                            break;
+                                    }*@
+                                    
+                                    <li role="presentation" class="divider"></li>
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.POCID })*@
+                                    @*<li role="presentation"><a class="modal-delete" data-toggle="modal" data-target="#deleteModal" data-id=@item.POCID>Delete</a></li>*@
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    }
+}

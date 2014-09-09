@@ -41,8 +41,5 @@ namespace SCMS.ViewModels.GM_POC
 
         [Display(Name = "Customer")]
         public string CustomerProperty { get; set; }
-
-        [Display(Name = "Port")]
-        public string PortProperty { get; set; }
     }
 }

@@ -347,6 +347,7 @@
     <Content Include="Views\UserMailer\Notification.cshtml" />
     <Content Include="Views\GM_POC\AjaxEditShipment.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EditShipment.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ListShipment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">

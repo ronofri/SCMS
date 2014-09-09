@@ -21,14 +21,15 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(".edit").on("click", function () {
-            var shipment = {'shipmentid': @Model.ShipmentID,'amount': $("#Amount").val()}
+            var shipment = {'shipmentid': @Model.ShipmentID, 'estimatedtimedeparture': $(".modal").find(".departure").val(), 'estimatedtimearrival': $(".modal").find(".arrival").val()}
             var stringShipment = JSON.stringify(shipment);
+            var port = $("#DestinationPort_PortProperty").val();
             $.ajax(
             {
                 url: '/GM_POC/EditShipment',
                 type: 'POST',
                 dataType: 'json',
-                data: {jsonShipment: stringShipment},
+                data: {jsonShipment: stringShipment, portProperty: port},
                 success: function (result) {
                     var success = result.success;
                 },
