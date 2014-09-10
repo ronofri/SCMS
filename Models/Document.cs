@@ -10,13 +10,13 @@ namespace SCMS.Models
     {
         public int DocumentID { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; }//path to parent folder
 
         public BL BL { get; set; }
 
-        public string File { get; set; }
+        public string File { get; set; }//path to file in server
 
-        public string Thumbnail { get; set; }
+        public string Thumbnail { get; set; }//path to thumbnail in server
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

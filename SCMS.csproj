@@ -46,6 +46,9 @@
     <Reference Include="dotless.Core">
       <HintPath>..\packages\dotless.1.4.1.0\lib\dotless.Core.dll</HintPath>
     </Reference>
+    <Reference Include="GhostscriptSharp">
+      <HintPath>packages\GhostScriptSharp.1.3.1.4\lib\net40\GhostscriptSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mvc.Mailer">
       <HintPath>packages\MvcMailer3.3.1\lib\40\Mvc.Mailer.dll</HintPath>
@@ -184,6 +187,7 @@
     <Compile Include="Controllers\GM_ScheduleController.cs" />
     <Compile Include="Controllers\GM_SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="DAL\DataBaseContext.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -250,6 +254,8 @@
     <Content Include="Content\images\grid.png" />
     <Content Include="Content\images\iconCog.png" />
     <Content Include="Content\images\iconUser.svg" />
+    <Content Include="Content\images\iconUserBlue.png" />
+    <Content Include="Content\images\iconUserOrange.png" />
     <Content Include="Content\images\icon_sprite.png" />
     <Content Include="Content\images\iconUser.svg" />
     <Content Include="Content\images\logo_elecmetal.png" />
@@ -289,6 +295,7 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\basicTableFilters.js" />
+    <Content Include="UploadedFiles\666\Thumbs\PackingList.jpeg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -351,6 +358,8 @@
     <Content Include="Views\Shared\EditorTemplates\EditShipment.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ListShipment.cshtml" />
     <Content Include="Views\Flowchart\Flowchart.cshtml" />
+    <Content Include="Views\Upload\TestUpload.cshtml" />
+    <None Include="UploadedFiles\666\PackingList.pdf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
@@ -396,6 +405,10 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "ls '$(SolutionDir)\packages\GhostScriptSharp.*\Tools\gsdll32.dll' | Sort -Descending | Select -First 1 | cp -Destination '$(TargetDir)'; exit 0"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

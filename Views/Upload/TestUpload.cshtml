@@ -1,0 +1,66 @@
+﻿@model List<string>
+
+    <h2>Downloads</h2> 
+    <table> 
+        <tr> 
+            <th>File Name</th> 
+            <th>Link</th> 
+        </tr> 
+        @for (var i =0; i <= Model.Count -1; i++) 
+        { 
+        <tr> 
+            <td> <img src=@Url.Content(Model[i].ToString()) width="70%" height="70%"> </td> 
+            <td> @Html.ActionLink("Download", "Download", new { fileName=@Model[i].ToString(), controller = "Upload" }) </td> 
+        </tr> 
+        } 
+    </table>
+
+<div>
+    <form id="formUploadFile" method="post" action="/Upload/TestUpload" enctype = "multipart/form-data" class="btn-file">
+       <input type="text" class="fileName" disabled="disabled" value=""/>
+       <span class="btn btn-default btn-file">
+            Browse <input type="file" name="file" id="file" accept='application/pdf'/>
+        </span>
+       <input type="submit" value="Upload File" id="btnSubmit" class="btn btn-primary"/>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(document).on('change', '.btn-file :file', function() {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+    });
+
+    $(document).ready(function () {
+        $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
+            $('.fileName').val(label);
+        });
+    });
+</script>
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSubmit").on("click", function (e) {
+            e.preventDefault(); //STOP default action
+
+            var postData = $('#formUploadFile').serializeArray();
+            var formURL = $('#formUploadFile').attr("action");
+
+            alert(postData);
+            $.ajax(
+            {
+                url: formURL,
+                type: "POST",
+                data: postData,
+                success: function (data, textStatus, jqXHR) {
+                    //data: return data from server
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    //if fails      
+                }
+            });
+        });
+    });
+</script>*@

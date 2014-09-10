@@ -1,3 +1,13 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LayoutGM.cshtml";
+    Layout = null;
+
+    if (User.IsInRole("GM"))
+    {
+        Layout = "~/Views/Shared/_LayoutGM.cshtml";
+    }
+
+    else if (User.IsInRole("SCM"))
+    {
+        Layout = "~/Views/Shared/_LayoutSCM.cshtml";
+    }
 }

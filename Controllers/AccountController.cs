@@ -15,7 +15,6 @@ using SCMS.Filters;
 namespace SimpleMembershipTables.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
