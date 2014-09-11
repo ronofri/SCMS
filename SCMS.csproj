@@ -211,6 +211,10 @@
     <Compile Include="Migrations\201409091517485_DeletePOME.Designer.cs">
       <DependentUpon>201409091517485_DeletePOME.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409111620020_DocumentLogicChanged.cs" />
+    <Compile Include="Migrations\201409111620020_DocumentLogicChanged.Designer.cs">
+      <DependentUpon>201409111620020_DocumentLogicChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Alloy.cs" />
@@ -253,27 +257,12 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\grid.png" />
     <Content Include="Content\images\iconCog.png" />
-    <Content Include="Content\images\iconUser.svg" />
     <Content Include="Content\images\iconUserBlue.png" />
     <Content Include="Content\images\iconUserOrange.png" />
     <Content Include="Content\images\icon_sprite.png" />
-    <Content Include="Content\images\iconUser.svg" />
     <Content Include="Content\images\logo_elecmetal.png" />
+    <Content Include="Content\images\placeholder.jpg" />
     <Content Include="Content\images\slider_handle.png" />
-    <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
-    <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
-    <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
-    <Content Include="Content\images\ui-bg_glass_100_f6f6f6_1x400.png" />
-    <Content Include="Content\images\ui-bg_glass_100_fdf5ce_1x400.png" />
-    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
-    <Content Include="Content\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
-    <Content Include="Content\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
-    <Content Include="Content\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\images\ui-icons_228ef1_256x240.png" />
-    <Content Include="Content\images\ui-icons_ef8c08_256x240.png" />
-    <Content Include="Content\images\ui-icons_ffd27a_256x240.png" />
-    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -295,7 +284,6 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\basicTableFilters.js" />
-    <Content Include="UploadedFiles\666\Thumbs\PackingList.jpeg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -312,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -359,7 +348,7 @@
     <Content Include="Views\Shared\DisplayTemplates\ListShipment.cshtml" />
     <Content Include="Views\Flowchart\Flowchart.cshtml" />
     <Content Include="Views\Upload\TestUpload.cshtml" />
-    <None Include="UploadedFiles\666\PackingList.pdf" />
+    <Content Include="Views\Shared\EditorTemplates\ViewDoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
@@ -374,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409091517485_DeletePOME.resx">
       <DependentUpon>201409091517485_DeletePOME.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409111620020_DocumentLogicChanged.resx">
+      <DependentUpon>201409111620020_DocumentLogicChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

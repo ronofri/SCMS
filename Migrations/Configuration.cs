@@ -90,7 +90,20 @@
                 new Role { RoleName="Admin"}
             };
 
-            roles.ForEach(m => context.Role.AddOrUpdate(m));
+            roles.ForEach(r => context.Role.AddOrUpdate(role => role.RoleName, r));
+            context.SaveChanges();
+
+            var bl = new BL();
+            context.BL.Add(bl);
+
+            var docs = new List<Document>
+            {
+                new Document { Name="Invoice"},
+                new Document { Name= "Packing List"},
+                new Document { Name="Origin Certificate"}
+            };
+
+            docs.ForEach(d => context.Document.AddOrUpdate(doc => doc.Name, d));
             context.SaveChanges();
         }
     }
