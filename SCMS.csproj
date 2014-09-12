@@ -179,6 +179,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FlowchartController.cs" />
+    <Compile Include="Controllers\LT_InboxController.cs" />
     <Compile Include="Controllers\SCM_SearchController.cs" />
     <Compile Include="Controllers\SCM_POCController.cs" />
     <Compile Include="Controllers\SCM_InboxController.cs" />
@@ -214,6 +215,14 @@
     <Compile Include="Migrations\201409111620020_DocumentLogicChanged.cs" />
     <Compile Include="Migrations\201409111620020_DocumentLogicChanged.Designer.cs">
       <DependentUpon>201409111620020_DocumentLogicChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409120352453_usersinroles.cs" />
+    <Compile Include="Migrations\201409120352453_usersinroles.Designer.cs">
+      <DependentUpon>201409120352453_usersinroles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409120353520_usersInRolesFix.cs" />
+    <Compile Include="Migrations\201409120353520_usersInRolesFix.Designer.cs">
+      <DependentUpon>201409120353520_usersInRolesFix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -349,11 +358,12 @@
     <Content Include="Views\Flowchart\Flowchart.cshtml" />
     <Content Include="Views\Upload\TestUpload.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ViewDoc.cshtml" />
+    <Content Include="Views\Shared\_LayoutLT.cshtml" />
+    <Content Include="Views\LT_Inbox\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408282159463_InitialMigration.resx">
       <DependentUpon>201408282159463_InitialMigration.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409072250581_UserSystemAdded.resx">
       <DependentUpon>201409072250581_UserSystemAdded.cs</DependentUpon>
@@ -366,6 +376,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409111620020_DocumentLogicChanged.resx">
       <DependentUpon>201409111620020_DocumentLogicChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409120352453_usersinroles.resx">
+      <DependentUpon>201409120352453_usersinroles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409120353520_usersInRolesFix.resx">
+      <DependentUpon>201409120353520_usersInRolesFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

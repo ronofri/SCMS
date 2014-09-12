@@ -10,4 +10,9 @@
     {
         Layout = "~/Views/Shared/_LayoutSCM.cshtml";
     }
+
+    else if (User.IsInRole("LongTen"))
+    {
+        Layout = "~/Views/Shared/_LayoutLT.cshtml";
+    }
 }

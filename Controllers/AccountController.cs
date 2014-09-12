@@ -65,7 +65,10 @@ namespace SimpleMembershipTables.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            List<Role> roles = db.Role.ToList();
+            RegisterModel VM = new RegisterModel();
+            VM.Roles = roles;
+            return View(VM);
         }
 
         //
@@ -82,8 +85,17 @@ namespace SimpleMembershipTables.Controllers
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+
+                    UsersInRole ur = new UsersInRole();
+                    UserProfile user = db.UserProfile.Where(x => x.UserName == model.UserName).ToList<UserProfile>()[0];
+
+                    ur.UserId = user.UserId;
+                    ur.RoleId = model.SelectedRoleId;
+
+                    db.UsersInRoles.Add(ur);
+                    db.SaveChanges();
+                    //WebSecurity.Login(model.UserName, model.Password);
+                    //return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -92,6 +104,8 @@ namespace SimpleMembershipTables.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            List<Role> roles = db.Role.ToList();
+            model.Roles = roles;
             return View(model);
         }
 

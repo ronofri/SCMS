@@ -329,8 +329,9 @@ namespace SCMS.Controllers
 
         public JsonResult ShipmentSource(int scheduleID)
         {
-            Schedule schedule = db.Schedule.Find(scheduleID);
-            List<Shipment> shipments = schedule.Shipments.ToList<Shipment>();
+            List<Shipment> shipments = db.Shipment.Include(x => x.Schedule.POC).Include(x => x.DestinationPort).Where(x => x.Schedule.ScheduleID == scheduleID).ToList<Shipment>();
+            //Schedule schedule = db.Schedule.Include(x => x.POC).Where(x => x.ScheduleID == scheduleID).ToList<Schedule>()[0];
+            //List<Shipment> shipments = schedule.Shipments.ToList<Shipment>();
             //shipments = db.Shipment.ToList<Shipment>();
             List<GanttSource> source = new List<GanttSource>();
 
@@ -430,7 +431,7 @@ namespace SCMS.Controllers
             try 
             {
                 IUserMailer mailer = new UserMailer(); //using SCMS.Mailers; <--
-                mailer.Notification("notify.scm@gmail.com").SendAsync();
+                mailer.Notification("notify.scm@gmail.com, jselman@elecmetal.cl, fMunoz@elecmetal.cl, rodrigo@rsolver.com", poc).SendAsync();
             }
             catch 
             {
