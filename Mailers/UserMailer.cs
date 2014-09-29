@@ -1,4 +1,5 @@
 using Mvc.Mailer;
+using SCMS.Models;
 
 namespace SCMS.Mailers
 { 
@@ -9,9 +10,9 @@ namespace SCMS.Mailers
 			MasterName="_Layout";
 		}
 		
-		public virtual MvcMailMessage Notification(string to)
+		public virtual MvcMailMessage Notification(string to, POC POC)
 		{
-			//ViewBag.Data = someObject;
+			ViewBag.POC = POC;
 			return Populate(x =>
 			{
 				x.Subject = "Notification";

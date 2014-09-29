@@ -25,8 +25,9 @@ namespace SCMS.Models
     {
         public Membership()
         {
-            Roles = new List<Role>();
+            //Roles = new List<Role>();
             OAuthMemberships = new List<OAuthMembership>();
+            UsersInRoles = new List<UsersInRole>();
         }
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -46,10 +47,13 @@ namespace SCMS.Models
         public string PasswordVerificationToken { get; set; }
         public DateTime? PasswordVerificationTokenExpirationDate { get; set; }
 
-        public ICollection<Role> Roles { get; set; }
+        //public ICollection<Role> Roles { get; set; }
 
         [ForeignKey("UserId")]
         public ICollection<OAuthMembership> OAuthMemberships { get; set; }
+
+        [ForeignKey("UserId")]
+        public ICollection<UsersInRole> UsersInRoles { get; set; }
     }
 
     [Table("webpages_OAuthMembership")]
@@ -67,12 +71,29 @@ namespace SCMS.Models
         public Membership User { get; set; }
     }
 
+    [Table("webpages_UsersInRoles")]
+    public class UsersInRole
+    {
+        [Key, Column(Order = 0)]
+        public int RoleId { get; set; }
+
+        [Key, Column(Order = 1)]
+        public int UserId { get; set; }
+
+        [Column("RoleId"), InverseProperty("UsersInRoles")]
+        public Role Roles { get; set; }
+
+        [Column("UserId"), InverseProperty("UsersInRoles")]
+        public Membership Members { get; set; }
+    }
+
     [Table("webpages_Roles")]
     public class Role
     {
         public Role()
         {
-            Members = new List<Membership>();
+            //Members = new List<Membership>();
+            UsersInRoles = new List<UsersInRole>();
         }
 
         [Key]
@@ -80,7 +101,9 @@ namespace SCMS.Models
         [StringLength(256)]
         public string RoleName { get; set; }
 
-        public ICollection<Membership> Members { get; set; }
+        //public ICollection<Membership> Members { get; set; }
+        [ForeignKey("RoleId")]
+        public ICollection<UsersInRole> UsersInRoles { get; set; }
     }
 
     #endregion
@@ -144,6 +167,16 @@ namespace SCMS.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public List<Role> Roles { get; set; }
+
+        [Display(Name = "Role")]
+        public int SelectedRoleId { get; set; }
+
+        public IEnumerable<SelectListItem> RoleItems
+        {
+            get { return new SelectList(Roles, "RoleID", "RoleName"); }
+        }
     }
 
     public class ExternalLogin

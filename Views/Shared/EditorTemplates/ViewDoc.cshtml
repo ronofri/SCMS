@@ -1,0 +1,37 @@
+﻿@model SCMS.Models.Document
+
+    <table> 
+        <tr> 
+            <th>@Model.Name</th> 
+            <th></th> 
+        </tr> 
+        @if (Model.UploadDate != null)
+        {
+            <tr> 
+                <td> <img src=@Url.Content(Model.thumbFileLocation) width="128" height="165" class="preview"> </td> 
+                <td> @Html.ActionLink("Download", "Download", new { docID = @Model.DocumentID, controller = "Upload" }) </td> 
+            </tr>
+        }
+
+        else 
+        {
+             <tr> 
+                <td> <img src=@Url.Content(Model.placeholderLocation) width="30%" height="30%"> </td> 
+                <td></td> 
+            </tr>
+        }
+    </table>
+
+<div>
+@using (Html.BeginForm("TestUpload", "Upload",FormMethod.Post, new { enctype="multipart/form-data", @class="btn-file"})) 
+{
+        @Html.HiddenFor(model => Model.DocumentID)
+        @Html.HiddenFor(model => Model.Name)
+        @Html.HiddenFor(model => Model.BL.BLID)
+       <input type="text" class="fileName" disabled="disabled" value=""/>
+       <span class="btn btn-default btn-file">
+            ... <input type="file" name="file" accept='application/pdf'/>
+        </span>
+       <input type="submit" value="Upload @Model.Name" class="btn btn-primary" />
+}
+</div>

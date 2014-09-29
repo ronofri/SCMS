@@ -10,7 +10,13 @@ namespace SCMS.RSolverTools
     {
         public GanttSource(Shipment shipment) 
         {
-            name = "Shipment " + shipment.ShipmentID;
+            int id = shipment.Schedule.POC.POCID;
+            string port = "Unknown";
+            if (shipment.DestinationPort != null)
+            {
+                port = shipment.DestinationPort.Name;
+            }
+            name = "PO:" + id + " Tons:" + shipment.Amount + " Port: " + port;
             values = new List<GanttValue>();
 
             values.Add(new GanttValue(shipment));
@@ -25,12 +31,18 @@ namespace SCMS.RSolverTools
         public GanttValue(Shipment shipment) 
         {
             //To avoid serialize cycle error (JSON)
+            int id = shipment.Schedule.POC.POCID;
+            string port = "Unknown";
+            if (shipment.DestinationPort != null) 
+            {
+                port = shipment.DestinationPort.Name;
+            }
             shipment.Schedule = null;
 
             @from = shipment.EstimatedTimeDeparture; // @ is needed to escape the from keyword
             to = shipment.EstimatedTimeArrival;
             desc = shipment.Amount + " Tons";
-            label = "Shipment " + shipment.ShipmentNumber;
+            label = "PO:" + id + " Tons:" + shipment.Amount + " Port: " + port;
 
             DateTime today = DateTime.Today;
 

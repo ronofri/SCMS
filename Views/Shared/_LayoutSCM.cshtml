@@ -36,7 +36,7 @@
             <div class="pull-right" style="margin-top:5px; margin-right:10px">
 
                 <div style="color:white">
-                    <img src="~/Content/images/iconUser.svg" width="15" height="15">
+                    <img src="~/Content/images/iconUserOrange.png" width="15" height="15">
                     Hello, @User.Identity.Name
                 </div>
                 <div class="pull-right">
@@ -55,8 +55,9 @@
             </div>
             <div class="sidebar-nav">
                     @Html.ActionLink("Inbox", "Inbox", "SCM_Inbox", null, new { @class = "nav-header" })
-                    @Html.ActionLink("Create New POME", "CreatePOC", "SCM_POC", null, new { @class = "nav-header" })
-                    @Html.ActionLink("Search ME PO's", "SearchPOC", "SCM_Search", null, new { @class = "nav-header" })
+                    @*@Html.ActionLink("Create New POME", "CreatePOC", "SCM_POC", null, new { @class = "nav-header" })
+                    @Html.ActionLink("Search ME PO's", "SearchPOC", "SCM_Search", null, new { @class = "nav-header" })*@
+                    @Html.ActionLink("Flowchart", "Flowchart", "Flowchart", null, new { @class = "nav-header" })
             </div>
 
             @RenderSection("featured", required: false)

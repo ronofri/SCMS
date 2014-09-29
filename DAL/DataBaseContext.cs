@@ -25,21 +25,23 @@ namespace SCMS.DAL
         public DbSet<Role> Role { get; set; }
         public DbSet<OAuthMembership> OAuthMembership { get; set; }
 
+        public DbSet<UsersInRole> UsersInRoles { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
 
             //User Management System
-            modelBuilder.Entity<Membership>()
-              .HasMany<Role>(r => r.Roles)
-              .WithMany(u => u.Members)
-              .Map(m =>
-              {
-                  m.ToTable("webpages_UsersInRoles");
-                  m.MapLeftKey("UserId");
-                  m.MapRightKey("RoleId");
-              });
+            //modelBuilder.Entity<Membership>()
+            //  .HasMany<Role>(r => r.Roles)
+            //  .WithMany(u => u.Members)
+            //  .Map(m =>
+            //  {
+            //      m.ToTable("webpages_UsersInRoles");
+            //      m.MapLeftKey("UserId");
+            //      m.MapRightKey("RoleId");
+            //  });
         }
     }
 }

@@ -40,14 +40,9 @@
             var customers = new List<Customer>
             {
                 
-                new Customer { Name = "Rsolver", Address = "Vitacura 4454" },
-                new Customer { Name = "Chuquicamata", Address = "Calama" },
-                new Customer { Name = "Pablo Escobar", Address = "Colombia" },
-                new Customer { Name = "Spence", Address = "Antofagasta" },
-                //new Customer { Name = "Cerro Colorado", Address = "Tarapacá" },
-                new Customer { Name = "Minera Escondida", Address = "Antofagasta" },
-                new Customer { Name = "El Teniente", Address = "Rancagua" },
-                new Customer { Name = "Andina", Address = "Los Andes" }
+                new Customer { Name = "ME Chile", Address = "Chile" },
+                new Customer { Name = "ME Hong Kong", Address = "China" },
+                new Customer { Name = "ME USA", Address = "USA" }
                 
             };
             customers.ForEach(c => context.Customer.AddOrUpdate(cust => cust.Name, c));
@@ -55,7 +50,8 @@
 
             var ports = new List<DestinationPort>
             {
-                    new DestinationPort {Name = "Valparaiso", Address = "Chile"}
+                    new DestinationPort {Name = "Valparaiso", Address = "Chile"},
+                    new DestinationPort {Name = "Antofagasta", Address = "Chile"}
             };
             ports.ForEach(p => context.DestinationPort.AddOrUpdate(port => port.Name, p));
             context.SaveChanges();
@@ -90,7 +86,20 @@
                 new Role { RoleName="Admin"}
             };
 
-            roles.ForEach(m => context.Role.AddOrUpdate(m));
+            roles.ForEach(r => context.Role.AddOrUpdate(role => role.RoleName, r));
+            context.SaveChanges();
+
+            var bl = new BL();
+            context.BL.Add(bl);
+
+            var docs = new List<Document>
+            {
+                new Document { Name="Invoice"},
+                new Document { Name= "Packing List"},
+                new Document { Name="Origin Certificate"}
+            };
+
+            docs.ForEach(d => context.Document.AddOrUpdate(doc => doc.Name, d));
             context.SaveChanges();
         }
     }

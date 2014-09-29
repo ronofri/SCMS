@@ -30,7 +30,12 @@ namespace SCMS.Controllers
 
             if (User.IsInRole("Admin"))
             {
-                return RedirectToAction("Solver", "R");
+                return RedirectToAction("Register", "Account");
+            }
+
+            if (User.IsInRole("LongTen"))
+            {
+                return RedirectToAction("Index", "LT_Inbox");
             }
 
             return View();
